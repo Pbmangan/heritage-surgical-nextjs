@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, FormEvent, useEffect } from 'react';
+import { Suspense, useState, FormEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import LegacyProgress from '@/components/LegacyProgress';
 
-export default function ScheduleStep3Page() {
+function ScheduleStep3Content() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [submitting, setSubmitting] = useState(false);
@@ -300,5 +301,19 @@ export default function ScheduleStep3Page() {
         )}
       </form>
     </main>
+  );
+}
+
+export default function ScheduleStep3Page() {
+  return (
+    <Suspense fallback={
+      <main className="container">
+        <h2 className="page-title">Patient Information - Step 3 of 3</h2>
+        <LegacyProgress />
+        <p className="loading-text">Loading...</p>
+      </main>
+    }>
+      <ScheduleStep3Content />
+    </Suspense>
   );
 }

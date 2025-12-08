@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { Suspense, useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { buildSlots, getUniqueDates, getUniqueLocations, Slot } from '@/lib/providers';
 import LegacyProgress from '@/components/LegacyProgress';
 
-export default function ScheduleStep2Page() {
+function ScheduleStep2Content() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true);
@@ -32,7 +32,7 @@ export default function ScheduleStep2Page() {
   const uniqueDates = useMemo(() => getUniqueDates(slots), [slots]);
   const uniqueLocations = useMemo(() => getUniqueLocations(slots), [slots]);
   const uniqueProviders = useMemo(() => {
-    const names = [...new Set(slots.map(s => `${s.provider.name} ${s.provider.credentials}`))];
+    const names = Array.from(new Set(slots.map(s => `${s.provider.name} ${s.provider.credentials}`)));
     return names.sort();
   }, [slots]);
 
@@ -177,5 +177,19 @@ export default function ScheduleStep2Page() {
         </>
       )}
     </main>
+  );
+}
+
+export default function ScheduleStep2Page() {
+  return (
+    <Suspense fallback={
+      <main className="container">
+        <h2 className="page-title">Select Appointment Time - Step 2 of 3</h2>
+        <LegacyProgress />
+        <p className="loading-text">Loading...</p>
+      </main>
+    }>
+      <ScheduleStep2Content />
+    </Suspense>
   );
 }
