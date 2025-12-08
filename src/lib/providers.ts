@@ -95,10 +95,10 @@ export function buildSlots(): Slot[] {
         day: 'numeric',
       });
 
-      // Pick 2-3 random times from base times
-      const numTimes = 2 + Math.floor(Math.random() * 2);
+      // Pick 3-6 random times from base times
+      const numTimes = 3 + Math.floor(Math.random() * 4);
       const shuffledTimes = [...provider.baseTimes].sort(() => Math.random() - 0.5);
-      const selectedTimes = shuffledTimes.slice(0, numTimes);
+      const selectedTimes = shuffledTimes.slice(0, Math.min(numTimes, provider.baseTimes.length));
 
       for (const baseTime of selectedTimes) {
         const time = addMinuteJitter(baseTime);
