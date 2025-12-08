@@ -326,7 +326,94 @@ a:hover {
   padding-bottom: 10px;
 }
 
-/* Slot Cards */
+/* Schedule List - Grouped by Date and Provider */
+.schedule-list {
+  border: 1px solid #ddd;
+}
+
+.date-group {
+  border-bottom: 1px solid #ddd;
+}
+
+.date-group:last-child {
+  border-bottom: none;
+}
+
+.date-header {
+  background: #f5f5f5;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.provider-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  gap: 15px;
+}
+
+.provider-row:last-child {
+  border-bottom: none;
+}
+
+.provider-avatar {
+  flex-shrink: 0;
+}
+
+.avatar-placeholder {
+  width: 50px;
+  height: 50px;
+  background: #e0e0e0;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.provider-info {
+  flex: 0 0 250px;
+  min-width: 200px;
+}
+
+.provider-name {
+  font-weight: bold;
+  color: #003366;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.provider-details {
+  font-size: 11px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.time-slots {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.time-slot-btn {
+  padding: 6px 12px;
+  background: #0088aa;
+  color: white;
+  border: 1px solid #006688;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.time-slot-btn:hover {
+  background: #006688;
+}
+
+/* Legacy slot cards (kept for compatibility) */
 .slot-grid {
   display: grid;
   gap: 10px;
@@ -515,5 +602,18 @@ a:hover {
   .slot-card {
     flex-direction: column;
     gap: 10px;
+  }
+
+  .provider-row {
+    flex-direction: column;
+  }
+
+  .provider-info {
+    flex: none;
+    min-width: auto;
+  }
+
+  .time-slots {
+    width: 100%;
   }
 }

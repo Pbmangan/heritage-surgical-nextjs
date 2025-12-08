@@ -2,7 +2,7 @@
 
 import { Suspense, useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { buildSlots, getUniqueDates, getUniqueLocations, Slot } from '@/lib/providers';
+import { buildSlots, getUniqueDates, getUniqueLocations, groupSlotsByDateAndProvider, Slot } from '@/lib/providers';
 import LegacyProgress from '@/components/LegacyProgress';
 
 function ScheduleStep2Content() {
@@ -45,13 +45,15 @@ function ScheduleStep2Content() {
     });
   }, [slots, dayFilter, providerFilter, locationFilter]);
 
+  const groupedSlots = useMemo(() => groupSlotsByDateAndProvider(filteredSlots), [filteredSlots]);
+
   const handleSelectSlot = (slot: Slot) => {
     const params = new URLSearchParams();
     params.set('service_line', serviceLine);
     params.set('new_patient', newPatient);
     params.set('visit_reason', visitReason);
     params.set('slot_date', slot.date);
-    params.set('slot_time', slot.time);
+    params.set('slot_time', slot.timeFormatted);
     params.set('slot_provider', slot.provider.name);
     params.set('slot_credentials', slot.provider.credentials);
     params.set('slot_specialty', slot.provider.specialty);
@@ -129,32 +131,46 @@ function ScheduleStep2Content() {
           </div>
 
           <div className="scheduler-section">
-            <h3>Available Slots ({filteredSlots.length} found)</h3>
-
             {filteredSlots.length === 0 ? (
               <div className="warning">
                 No appointments match your filters. Try adjusting your criteria or
                 call (555) 123-4567 for additional options.
               </div>
             ) : (
-              <div className="slot-grid">
-                {filteredSlots.map((slot, index) => (
-                  <div key={index} className="slot-card">
-                    <div className="slot-info">
-                      <strong>{slot.provider.name}, {slot.provider.credentials}</strong><br />
-                      <span style={{ fontSize: '12px', color: '#666' }}>
-                        {slot.provider.specialty}<br />
-                        {slot.provider.location}<br />
-                        {slot.provider.phone}
-                      </span><br />
-                      <span style={{ fontSize: '11px' }}>{slot.dateFormatted}</span>
+              <div className="schedule-list">
+                {groupedSlots.map((dateGroup) => (
+                  <div key={dateGroup.date} className="date-group">
+                    <div className="date-header">
+                      {dateGroup.dateFormatted}
                     </div>
-                    <button
-                      className="slot-time-btn"
-                      onClick={() => handleSelectSlot(slot)}
-                    >
-                      {slot.time}
-                    </button>
+                    {dateGroup.providers.map((providerGroup, idx) => (
+                      <div key={idx} className="provider-row">
+                        <div className="provider-avatar">
+                          <div className="avatar-placeholder" />
+                        </div>
+                        <div className="provider-info">
+                          <div className="provider-name">
+                            {providerGroup.provider.name.toUpperCase()}, {providerGroup.provider.credentials}
+                          </div>
+                          <div className="provider-details">
+                            {providerGroup.provider.location}<br />
+                            {providerGroup.provider.address}<br />
+                            {providerGroup.provider.phone}
+                          </div>
+                        </div>
+                        <div className="time-slots">
+                          {providerGroup.slots.map((slot, slotIdx) => (
+                            <button
+                              key={slotIdx}
+                              className="time-slot-btn"
+                              onClick={() => handleSelectSlot(slot)}
+                            >
+                              {slot.timeFormatted}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
