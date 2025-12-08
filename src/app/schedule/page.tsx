@@ -47,8 +47,8 @@ export default function SchedulePage() {
               <label htmlFor="service_line">Select Clinic *</label>
               <select id="service_line" name="service_line" required>
                 <option value="">-- Select Clinic --</option>
-                <option value="inspired_health">Inspired Health Group</option>
-                <option value="inspired_aesthetics">Inspired Aesthetics</option>
+                <option value="heritage_surgical">Heritage Surgical</option>
+                <option value="heritage_aesthetics">Heritage Aesthetics</option>
               </select>
             </div>
 
