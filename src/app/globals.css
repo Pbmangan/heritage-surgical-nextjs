@@ -1,0 +1,519 @@
+/* Heritage Surgical - Retro 2000s Medical Portal Styling */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  background: #e8e8e8 repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.3) 10px,
+    rgba(255, 255, 255, 0.3) 20px
+  );
+  color: #333;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+a {
+  color: #003366;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #0066cc;
+}
+
+/* Outdated Banner */
+.outdated-banner {
+  background: repeating-linear-gradient(
+    45deg,
+    #f5e6c8,
+    #f5e6c8 10px,
+    #f0dbb0 10px,
+    #f0dbb0 20px
+  );
+  border-top: 2px dashed #996633;
+  border-bottom: 2px dashed #996633;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #663300;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(180deg, #003366 0%, #002244 100%);
+  border-bottom: 4px double #006699;
+  padding: 15px 20px;
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 28px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.site-title a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.tagline {
+  margin: 5px 0 0;
+  font-size: 12px;
+  font-style: italic;
+  color: #99ccff;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 8px 15px;
+  background: linear-gradient(180deg, #4488bb 0%, #336699 100%);
+  color: #ffffff !important;
+  text-decoration: none;
+  border: 2px outset #6699cc;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link:hover {
+  background: linear-gradient(180deg, #5599cc 0%, #4477aa 100%);
+}
+
+.nav-link.active {
+  background: linear-gradient(180deg, #336699 0%, #224466 100%);
+  border-style: inset;
+}
+
+/* Main Container */
+.container {
+  max-width: 1080px;
+  margin: 20px auto;
+  padding: 20px 30px;
+  background: #fefefe;
+  border-left: 3px double #cccccc;
+  border-right: 3px double #cccccc;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Page Title */
+.page-title {
+  font-size: 22px;
+  color: #003366;
+  border-bottom: 2px groove #cccccc;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 0 #ffffff;
+}
+
+/* Callout Boxes */
+.callout-box {
+  background: #e6f3ff;
+  border: 2px dotted #6699cc;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.warning {
+  background: #fff0f0;
+  border: 2px solid #cc6666;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.note-block {
+  background: #ffffcc;
+  border: 2px dashed #cccc66;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+/* Tables */
+.table-layout {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+.table-layout th,
+.table-layout td {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.table-layout th {
+  background: linear-gradient(180deg, #e0e0e0 0%, #cccccc 100%);
+  font-weight: bold;
+}
+
+.table-layout tr:nth-child(even) {
+  background: #f5f5f5;
+}
+
+/* Image Wall */
+.image-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.image-placeholder {
+  background: #f0f0f0;
+  border: 2px groove #cccccc;
+  padding: 10px;
+  text-align: center;
+  font-size: 11px;
+  color: #666666;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fieldsets */
+.legend-old {
+  border: 2px groove #cccccc;
+  padding: 20px;
+  margin: 20px 0;
+  background: #fafafa;
+}
+
+.legend-old legend {
+  font-weight: bold;
+  color: #003366;
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+/* Form Elements */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 2px inset #cccccc;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-group input[type="range"] {
+  width: 100%;
+}
+
+/* DOB Row */
+.dob-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  gap: 10px;
+}
+
+/* Checkboxes */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(180deg, #4488bb 0%, #336699 100%);
+  color: #ffffff;
+  border: 3px outset #6699cc;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(180deg, #5599cc 0%, #4477aa 100%);
+}
+
+.btn-primary:active {
+  border-style: inset;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 8px 15px;
+  background: linear-gradient(180deg, #e0e0e0 0%, #cccccc 100%);
+  color: #333333;
+  border: 2px outset #dddddd;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Scheduler Section */
+.scheduler-section {
+  border: 3px ridge #cccccc;
+  padding: 20px;
+  margin: 20px 0;
+  background: #fefefe;
+}
+
+.scheduler-section h3 {
+  margin-top: 0;
+  color: #003366;
+  border-bottom: 1px dashed #cccccc;
+  padding-bottom: 10px;
+}
+
+/* Slot Cards */
+.slot-grid {
+  display: grid;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.slot-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #f9f9f9;
+  border: 2px groove #dddddd;
+}
+
+.slot-info {
+  flex: 1;
+}
+
+.slot-info strong {
+  color: #003366;
+}
+
+.slot-time-btn {
+  padding: 10px 20px;
+  background: linear-gradient(180deg, #66aa66 0%, #448844 100%);
+  color: white;
+  border: 2px outset #88cc88;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.slot-time-btn:hover {
+  background: linear-gradient(180deg, #77bb77 0%, #559955 100%);
+}
+
+/* Broken Links */
+.broken-link {
+  color: #cc0000;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+/* Footer */
+.footer {
+  background: linear-gradient(180deg, #333333 0%, #222222 100%);
+  color: #cccccc;
+  padding: 20px;
+  text-align: center;
+  margin-top: 30px;
+  border-top: 3px double #666666;
+}
+
+.footer a {
+  color: #99ccff;
+}
+
+/* Legacy Progress Bar */
+.legacy-progress-container {
+  background: #e0e0e0;
+  border: 2px inset #cccccc;
+  height: 20px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.legacy-progress {
+  width: 0%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    #4488bb,
+    #4488bb 10px,
+    #336699 10px,
+    #336699 20px
+  );
+  transition: width 2s ease-in-out;
+}
+
+.legacy-progress.animate {
+  width: 35%;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(180deg, #e6f3ff 0%, #cce6ff 100%);
+  border: 2px groove #99ccff;
+  margin-bottom: 20px;
+}
+
+.hero h2 {
+  color: #003366;
+  margin: 0 0 10px;
+  font-size: 24px;
+}
+
+/* Features Table */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.features-list li {
+  padding: 8px 0;
+  border-bottom: 1px dotted #cccccc;
+}
+
+.features-list li:before {
+  content: "✓ ";
+  color: #448844;
+  font-weight: bold;
+}
+
+/* Success/Error Messages */
+.success-message {
+  background: #e6ffe6;
+  border: 2px solid #66cc66;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.error-message {
+  background: #ffe6e6;
+  border: 2px solid #cc6666;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.error-list {
+  color: #cc0000;
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+/* Filter Row */
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f5f5f5;
+  border: 1px solid #dddddd;
+}
+
+/* Loading State */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loading-text {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #666666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .nav {
+    flex-direction: column;
+  }
+
+  .nav-link {
+    text-align: center;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dob-row {
+    grid-template-columns: 1fr;
+  }
+
+  .slot-card {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
