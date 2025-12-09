@@ -16,19 +16,24 @@ interface EmailResult {
 export async function sendResendEmail(message: EmailMessage): Promise<EmailResult> {
   const apiKey = process.env.RESEND_API_KEY;
 
+  console.log('apiKey for email', apiKey);
+
   if (!apiKey) {
+    console.error('RESEND_API_KEY not configured');
     return { ok: false, reason: 'RESEND_API_KEY not configured' };
   }
 
-  const defaultTo = ['peter@clarkstreethealth.com', 'andrew@clarkstreethealth.com', 'delivered@resend.dev'];
+  const defaultTo = ['peter@clarkstreethealth.com', 'andrew@clarkstreethealth.com'];
 
   const payload = {
-    from: message.from || 'Heritage Surgical <onboarding@resend.dev>',
+    from: message.from || 'Heritage Surgical <booking@test.clarkstreethealth.com>',
     to: message.to || defaultTo,
     subject: message.subject,
     html: message.html,
     reply_to: message.replyTo,
   };
+
+  console.log('payload for email', payload);
 
   try {
     const response = await fetch('https://api.resend.com/emails', {
