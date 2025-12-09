@@ -20,7 +20,7 @@ export async function sendResendEmail(message: EmailMessage): Promise<EmailResul
     return { ok: false, reason: 'RESEND_API_KEY not configured' };
   }
 
-  const defaultTo = ['peter@clarkstreethealth.com', 'delivered@resend.dev'];
+  const defaultTo = ['peter@clarkstreethealth.com', 'andrew@clarkstreethealth.com', 'delivered@resend.dev'];
 
   const payload = {
     from: message.from || 'Heritage Surgical <onboarding@resend.dev>',
