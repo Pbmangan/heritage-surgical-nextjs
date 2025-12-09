@@ -10,6 +10,7 @@ function ScheduleStep2Content() {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [slots, setSlots] = useState<Slot[]>([]);
+  const [daysAhead, setDaysAhead] = useState(14);
   const [dayFilter, setDayFilter] = useState('all');
   const [providerFilter, setProviderFilter] = useState('all');
   const [locationFilter, setLocationFilter] = useState('all');
@@ -19,15 +20,23 @@ function ScheduleStep2Content() {
   const visitReason = searchParams.get('visit_reason') || '';
 
   useEffect(() => {
-    // Simulate server delay
-    const delay = 800 + Math.random() * 1200;
-    const timer = setTimeout(() => {
-      setSlots(buildSlots());
-      setLoading(false);
-    }, delay);
+    // Simulate server delay on initial load only
+    if (slots.length === 0) {
+      const delay = 800 + Math.random() * 1200;
+      const timer = setTimeout(() => {
+        setSlots(buildSlots(daysAhead));
+        setLoading(false);
+      }, delay);
+      return () => clearTimeout(timer);
+    } else {
+      // When expanding days, update immediately
+      setSlots(buildSlots(daysAhead));
+    }
+  }, [daysAhead]);
 
-    return () => clearTimeout(timer);
-  }, []);
+  const handleShowMoreDays = () => {
+    setDaysAhead(prev => prev * 2);
+  };
 
   const uniqueDates = useMemo(() => getUniqueDates(slots), [slots]);
   const uniqueLocations = useMemo(() => getUniqueLocations(slots), [slots]);
@@ -175,6 +184,15 @@ function ScheduleStep2Content() {
                 ))}
               </div>
             )}
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            <button
+              className="btn-secondary"
+              onClick={handleShowMoreDays}
+            >
+              Show More Days (Currently showing {daysAhead} days ahead)
+            </button>
           </div>
 
           <div className="note-block">

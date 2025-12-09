@@ -64,9 +64,18 @@ function formatTime12Hour(time24: string): string {
   return `${hours12}:${String(minutes).padStart(2, '0')} ${period}`;
 }
 
-function addMinuteJitter(time: string): string {
+// Simple seeded random number generator for deterministic slot generation
+function seededRandom(seed: number): () => number {
+  let state = seed;
+  return () => {
+    state = (state * 1103515245 + 12345) & 0x7fffffff;
+    return state / 0x7fffffff;
+  };
+}
+
+function addMinuteJitter(time: string, rng: () => number): string {
   const [hours, minutes] = time.split(':').map(Number);
-  const jitter = Math.floor(Math.random() * 11) - 5; // -5 to +5 minutes
+  const jitter = Math.floor(rng() * 11) - 5; // -5 to +5 minutes
   let newMinutes = minutes + jitter;
   let newHours = hours;
 
@@ -81,21 +90,31 @@ function addMinuteJitter(time: string): string {
   return `${String(newHours).padStart(2, '0')}:${String(newMinutes).padStart(2, '0')}`;
 }
 
-export function buildSlots(): Slot[] {
+export function buildSlots(maxDaysAhead: number = 14): Slot[] {
   const slots: Slot[] = [];
   const today = new Date();
+  // Use today's date as the base for stable seed (changes daily but consistent within a day)
+  const baseSeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
 
-  for (const provider of providers) {
-    // Generate 3-5 random dates 1-14 days in the future
-    const numDays = 3 + Math.floor(Math.random() * 3);
-    const daysAhead = new Set<number>();
-    while (daysAhead.size < numDays) {
-      daysAhead.add(1 + Math.floor(Math.random() * 14));
-    }
+  for (let providerIndex = 0; providerIndex < providers.length; providerIndex++) {
+    const provider = providers[providerIndex];
 
-    for (const days of daysAhead) {
+    // Create a deterministic RNG seeded by provider index and base date
+    const providerSeed = baseSeed * 100 + providerIndex;
+    const rng = seededRandom(providerSeed);
+
+    // Generate slots for each day in the range (1 to maxDaysAhead)
+    for (let daysOffset = 1; daysOffset <= maxDaysAhead; daysOffset++) {
+      // Use deterministic check for whether this provider has slots on this day
+      // Each provider-day combo gets a consistent seed
+      const daySeed = providerSeed * 100 + daysOffset;
+      const dayRng = seededRandom(daySeed);
+
+      // ~60% chance provider has slots on any given day
+      if (dayRng() > 0.6) continue;
+
       const date = new Date(today);
-      date.setDate(date.getDate() + days);
+      date.setDate(date.getDate() + daysOffset);
 
       const dateStr = date.toISOString().split('T')[0];
       const dateFormatted = date.toLocaleDateString('en-US', {
@@ -105,16 +124,16 @@ export function buildSlots(): Slot[] {
         year: 'numeric',
       });
 
-      // Pick 6-15 random times from base times (or all if fewer)
-      const numTimes = 6 + Math.floor(Math.random() * 10);
-      const shuffledTimes = [...provider.baseTimes].sort(() => Math.random() - 0.5);
+      // Pick 3-6 random times from base times deterministically
+      const numTimes = 3 + Math.floor(dayRng() * 4);
+      const shuffledTimes = [...provider.baseTimes].sort(() => dayRng() - 0.5);
       const selectedTimes = shuffledTimes.slice(0, Math.min(numTimes, provider.baseTimes.length));
 
       // Sort selected times
       selectedTimes.sort();
 
       for (const baseTime of selectedTimes) {
-        const time = addMinuteJitter(baseTime);
+        const time = addMinuteJitter(baseTime, dayRng);
         slots.push({
           date: dateStr,
           dateFormatted,
