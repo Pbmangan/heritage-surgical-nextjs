@@ -47,6 +47,15 @@ export const providers: Provider[] = [
     phone: "(716)-662-7008",
     baseTimes: ["11:30", "12:45", "01:00", "01:15", "02:00", "02:15", "02:30", "03:15", "03:30", "03:45", "04:00"],
   },
+  {
+    name: "Peter Mangan",
+    credentials: "MD",
+    specialty: "Family Medicine",
+    location: "Heritage Surgical - Suite 213",
+    address: "3671 Southwestern Blvd., Suite 213",
+    phone: "(716)-662-7008",
+    baseTimes: ["08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30"],
+  },
 ];
 
 export interface Slot {
