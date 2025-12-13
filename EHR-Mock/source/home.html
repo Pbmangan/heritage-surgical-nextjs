@@ -1,0 +1,249 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+     
+    
+    
+ 
+    <title>MM</title>
+    <meta name="description" content="Providing access to your MEDENT system while away from your desk">
+    <meta name="Author" content="Community Computer Service Inc.">
+    <meta name="Copyright" content="© Community Computer Service Inc.">
+    <meta name="robots" content="noindex, nofollow, noarchive, ">
+    <link rel="icon" href="images/touch_icon.png">
+ 
+    <!--  These tags are needed for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=yes">
+    <link rel="apple-touch-icon" href="images/touch_icon.png">
+    <link rel="apple-touch-startup-image" href="images/touch_icon.png">
+ 
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic">
+    <link rel="stylesheet" type="text/css" href="css/quill.snow.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/menubar.css">
+     
+    <link rel="preload" href="css/mm_themes/mm_theme_0.css" as="style"><link rel="stylesheet" type="text/css" id="ssTheme" href="css/mm_themes/mm_theme_0.css"><link rel="manifest" href="make_manifest.php?theme=0"><meta name="theme-color" content="#3f51b5">
+ 
+ <style type="text/css">img[onload^="SVGInject("]{visibility:hidden;}</style></head>
+ 
+ <body>
+    <div id="simulate-mobile-page" onclick="void(0);" style="min-height: auto;"><!-- Triage #7581953, #7576799 -->
+       <section id="page-container"><div class="titleBar">
+    <header class="phoneFixed main_menu">
+       <a title="Refresh tiles" class="displayBlock refresh_MM">
+          <div class="tableCell imageAlignMiddle">
+ <!--
+             <img src="images/LogoAndMedent.svg" class="MMIcon light_theme" alt="" height="40" />
+             <img src="images/LogoAndMedentTransparentWhite.svg" class="MMIcon dark_theme" alt="" height="40" />
+  -->
+             <img src="images/LogoAndMedentTransparentWhite.svg" class="MMIcon" alt="" height="40">
+          </div>
+           <div class="tableCell imageAlignMiddle">
+             <div id="practice_name"></div>
+          </div>
+       </a>
+       <button id="a2hs" class="keepHidden rightText" type="button">
+          Add to<br>
+          Home<br>
+          Screen
+       </button>
+    </header>
+ </div>
+ 
+ 
+ 
+ <div id="outerPageContent">
+    <div id="pageContent">
+    <!-- ========================================================== -->
+       <article style="opacity: 1;">
+             <h1 id="main_menu_greeting">
+       Good evening, Clark!
+    </h1><div id="selection_buttons" class="centerText">
+ <button id="menuId_75" class="menuItemButton small" data-action_id="75">
+    <div>
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" height="64" width="64" data-inject-url="https://www.medentmobile.com/mobile/images/patient_lookup.svg"> <g> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="M 1.7755247,22.974729 C 0.96466605,35.245361 10.254885,45.850285 22.525521,46.661143 34.796156,47.472001 45.401084,38.181775 46.211942,25.911142 47.022801,13.64051 37.732561,3.0355861 25.461926,2.2247275 13.19129,1.4138688 2.5863834,10.704096 1.7755247,22.974729 Z m 3.5406511,0.107027 C 5.9934238,12.832981 14.853349,5.0714197 25.102118,5.748672 35.350865,6.4259221 43.105809,15.285412 42.428561,25.534189 41.751313,35.782965 32.898428,43.53831 22.649702,42.861062 12.400912,42.18381 4.6389065,33.330532 5.3161758,23.081756 Z"></path> <rect style="fill:#ffffff;fill-opacity:1;stroke:none" width="33.313976" height="7.4715185" x="53.759113" y="-4.2695441" ry="2.8270612" transform="matrix(0.70252134,0.71166268,-0.71679942,0.69727942,0,0)"></rect> <path style="fill:#ffffff;stroke:none" d="m 18.150117,10.394086 c 3.521979,-1.2901824 7.542145,-1.1590889 10.972588,0.357805 3.853379,1.70391 6.895866,5.149076 8.110187,9.183586 -2.24185,-3.385847 -5.469546,-6.110523 -9.183595,-7.752379 -3.095884,-1.368586 -6.520103,-1.987422 -9.89918,-1.789012 z"></path> </g> </svg>
+ 
+       <div class="new"><p></p></div>
+       <div class="label"><p>Chart Lookup</p></div>
+    </div>
+ </button>
+ <button id="menuId_5" class="menuItemButton small" data-action_id="5">
+    <div>
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" height="64" width="64" data-inject-url="https://www.medentmobile.com/mobile/images/my_email.svg"> <g> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="m 6.7812499e-7,16.002731 0,31.999999 L 64,48.00273 64,16.002731 6.78125e-7,16.002731 Z M 2.6666673,18.669397 l 58.6666657,0 0,26.666666 -58.6666657,0 0,-26.666666 z"></path> <path style="fill:#ffffff;stroke:none" d="M 2.8014897,17.883166 32,35.609334 61.848273,16.80567 62.71027,19.17616 32,39.057321 0.43099802,19.391661 2.8014897,17.883166 Z"></path> <path style="fill:#ffffff;stroke:none" d="m 39.353333,30.949396 -2.526666,1.64 c 6.077235,4.238799 16.669015,10.365423 21.812716,14.672715 L 63.2,46.989397 Z m -14.966666,0.04 -23.43999965,14.026667 0.77999995,2.4 25.3599997,-14.76 z"></path> </g> </svg>
+ 
+       <div class="new"><p></p></div>
+       <div class="label"><p>My Email</p></div>
+    </div>
+ </button>
+ <button id="menuId_2" class="menuItemButton small" data-action_id="2">
+    <div>
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" height="64" width="64" data-inject-url="https://www.medentmobile.com/mobile/images/my_triage.svg"> <g> <path d="m 24,0 0,26.432326 1.706668,0 0,-23.992522 12.48,0 0,23.992522 1.96,0 L 40.146668,0 24,0 Z M 24,38.165992 24,64 l 16.146668,0 0,-25.834008 -1.96,0 0,23.839616 -12.48,0 0,-23.839616 -1.706668,0 z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <path d="m 0,24.112184 0,15.955126 25.646666,0 0,-1.914614 -23.5133326,0 0,-11.700426 23.5133326,0 0,-2.340086 -25.646666,0 z m 38.193334,0 0,2.340086 23.673332,0 0,11.700426 -23.673332,0 0,1.914614 25.806666,0 0,-15.955126 -25.806666,0 z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <path d="M 0 24 L 0 40 L 27 40 L 27 37 L 4 37 L 3 37 L 3 27 L 4 27 L 27 27 L 27 24 L 0 24 z M 37 24 L 37 27 L 60 27 L 61 27 L 61 37 L 60 37 L 37 37 L 37 40 L 64 40 L 64 24 L 37 24 z " style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"></path> <path d="M 24 0 L 24 27 L 27 27 L 27 4 L 27 3 L 37 3 L 37 4 L 37 24 L 37 27 L 40 27 L 40 0 L 24 0 z M 24 37 L 24 64 L 40 64 L 40 37 L 37 37 L 37 60 L 37 61 L 27 61 L 27 60 L 27 37 L 24 37 z " style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"></path> </g> </svg>
+ 
+       <div class="new"><p></p></div>
+       <div class="label"><p>My Triage</p></div>
+    </div>
+ </button>
+ <button id="menuId_74" class="menuItemButton small" data-action_id="74">
+    <div>
+       <svg width="64" height="64" viewBox="0 0 64 64">
+    <rect x="0" y="0" width="100%" height="30%" class="month"></rect>
+    <text x="50%" y="22%" class="month">Dec</text>
+    <rect x="0" y="0" width="100%" height="100%" class="date"></rect>
+    <text x="50%" y="90%" class="date">12</text>
+ </svg>
+       <div class="new"><p></p></div>
+       <div class="label"><p>My Schedule</p></div>
+    </div>
+ </button>
+ <button id="menuId_4" class="menuItemButton small" data-action_id="4">
+    <div>
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" height="64" width="64" data-inject-url="https://www.medentmobile.com/mobile/images/my_docs.svg"> <g> <path d="M 6,1.04e-5 6,64 l 51.999995,0 0,-63.9999896 L 6,1.04e-5 Z m 2.3636363,2.3704 47.2727227,0 0,59.2591896 -47.2727227,0 0,-59.2591896 z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <path d="m 21.999999,11 0,3 29.999996,0 0,-3 -29.999996,0 z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <path d="m 12,21 0,3 39.999995,0 0,-3 L 12,21 Z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="m 12,41 0,3 39.999995,0 0,-3 L 12,41 Z"></path> <path d="m 12,51 0,3 39.999995,0 0,-3 L 12,51 Z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="m 12,31 0,3 39.999995,0 0,-3 L 12,31 Z"></path> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="m 6,61 0,3 52,0 0,-3 -52,0 z"></path> <path d="m 6,4e-7 0,3 52,0 0,-3 -52,0 z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <rect y="-1.6927719e-005" x="6" height="63.999992" width="3" style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:35.90000153;stroke-miterlimit:4;stroke-dasharray:none"></rect> <rect style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:35.90000153;stroke-miterlimit:4;stroke-dasharray:none" width="3" height="63.999992" x="54.999996" y="-1.6927719e-005"></rect> </g> </svg>
+ 
+       <div class="new"><p></p></div>
+       <div class="label"><p>My Doc</p></div>
+    </div>
+ </button>
+ <button id="menuId_3" class="menuItemButton small" data-action_id="3">
+    <div>
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" height="64" width="64" data-inject-url="https://www.medentmobile.com/mobile/images/my_todo.svg"> <g> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="m 8.3162735,2.5515371 0,57.5999989 46.9333355,0 0,-57.5999989 -46.9333355,0 z m 2.1333335,2.1333333 42.666668,0 0,53.3333326 -42.666668,0 0,-53.3333326 z"></path> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="m 21.116273,16.418202 0,2.133335 29.866669,0 0,-2.133335 -29.866669,0 z"></path> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="m 12.58294,14.282133 0,6.400002 6.4,0 0,-6.400002 -6.4,0 z m 1.066667,1.066667 4.266666,0 0,4.266669 -4.266666,0 0,-4.266669 z"></path> <path d="m 12.58294,24.948802 0,6.399999 6.4,0 0,-6.399999 -6.4,0 z m 1.066667,1.066667 4.266666,0 0,4.266666 -4.266666,0 0,-4.266666 z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="m 21.116273,27.08487 0,2.133333 29.866669,0 0,-2.133333 -29.866669,0 z"></path> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="m 12.58294,35.615468 0,6.4 6.4,0 0,-6.4 -6.4,0 z m 1.066667,1.066667 4.266666,0 0,4.266666 -4.266666,0 0,-4.266666 z"></path> <path d="m 21.116273,37.751536 0,2.133334 29.866669,0 0,-2.133334 -29.866669,0 z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <path d="m 12.736427,46.282135 0,6.400004 6.4,0 0,-6.400004 -6.4,0 z m 1.066667,1.066666 4.266666,0 0,4.266667 -4.266666,0 0,-4.266667 z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="m 21.26976,48.418203 0,2.133333 29.866669,0 0,-2.133333 -29.866669,0 z"></path> <path d="M 10.413882,15.156881 15.980163,19.621779 24.431514,6.4225707 15.442157,17.238473 Z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="M 10.41398,15.363904 15.980261,19.828802 24.431612,6.6295936 15.442253,17.445495 Z"></path> <path d="m 10.413882,26.030573 5.566281,4.464895 8.451351,-13.19921 -8.989357,10.815906 z" style="fill:#ffffff;fill-opacity:1;stroke:none"></path> <path style="fill:#ffffff;fill-opacity:1;stroke:none" d="m 10.413882,36.697239 5.566281,4.464896 8.451351,-13.199208 -8.989357,10.815903 z"></path> </g> </svg>
+ 
+       <div class="new"><p></p></div>
+       <div class="label"><p>My Todo</p></div>
+    </div>
+ </button>
+ </div><!-- selection_buttons -->
+ 
+       </article>
+    <!-- ========================================================== -->
+    </div>
+ </div>
+ 
+ <footer>
+    <div id="footer_spacer" class="dark_theme">&nbsp;</div>
+    <p id="footerLinks">
+       <span id="logout">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" height="32" width="32" data-inject-url="https://www.medentmobile.com/mobile/images/exit.svg" class="titleImage"> 
+    <style>
+       fill:#fafafa;
+       fill-opacity:1;
+       stroke:none;
+    </style>
+    <g style="fill:#fafafa" transform="translate(1.0699993,0)"> 
+       <path d="M 10.666668,9.6013728 6.5104166e-7,15.971367 10.633334,22.401373 l 0.01333,-5.12 -1.0599996,0 -0.00999,3.52 -7.9766667,-4.823339 8.0000001,-4.776661 -0.00999,3.626666 1.0633332,0 0.01333,-5.2266662 z" class="a"></path> 
+       <path d="m 10.346667,13.868039 0,0.96 8.320001,0 0,2.453334 -8.320001,0 0,0.853333 9.280001,0 0,-4.266667 -9.280001,0 z" class="a"></path> 
+       <path d="m 11.733334,1.6013728 0,10.1333332 1.6,0 0,-8.5333332 14.933334,0 0,25.6000002 -14.933334,0 0,-8.533334 -1.6,0 0,10.133334 18.133334,0 0,-28.8000002 -18.133334,0 z" class="a"></path> 
+    </g> 
+ </svg>
+       </span>
+       <span id="preferences" class="">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="32" data-inject-url="https://www.medentmobile.com/mobile/images/preferences.svg" class="titleImage">
+    <style>
+       .a {
+          fill:#fafafa;
+          fill-opacity:1;
+          fill-rule:nonzero;
+          stroke:none;
+       }
+    </style>
+   <g id="g4--inject-67" transform="matrix(2,0,0,2,-16,-2056.725)">
+     <path d="m 14.703046,1028.7971 c -0.368127,0 -0.662845,0.2842 -0.662845,0.6391 l 0,0.9625 0.444696,0 0,-0.5743 c 0,-0.2898 0.24474,-0.5258 0.545378,-0.5258 l 2.055681,0 c 0.300638,0 0.541178,0.236 0.541178,0.5258 l 0,0.5743 0.39855,0 0,-0.9625 c 0,-0.3549 -0.29472,-0.6391 -0.662846,-0.6391 l -2.659792,0 z" class="a"></path>
+     <path d="m 14.484897,1030.1075 -0.436309,0 -2.878636,1.6281 0.390149,0.3599 2.928983,-1.62 z" class="a"></path>
+     <path class="a" d="m 8.6067054,1033.6894 c -0.1840631,0.3074 -0.076203,0.6955 0.2426131,0.8729 l 0.8647052,0.4813 0.2223481,-0.3712 -0.5159122,-0.2872 c -0.2603576,-0.1449 -0.3499481,-0.4672 -0.199629,-0.7182 l 1.0278344,-1.7162 c 0.150332,-0.251 0.482562,-0.3339 0.74292,-0.189 l 0.515912,0.2872 0.199274,-0.3328 -0.864705,-0.4812 c -0.318816,-0.1775 -0.721408,-0.073 -0.9054712,0.2339 l -1.3298894,2.2205 z"></path>
+     <path class="a" d="m 14.703046,1028.7971 c -0.368127,0 -0.662845,0.2842 -0.662845,0.6391 l 0,0.9625 0.444696,0 0,-0.5743 c 0,-0.2898 0.24474,-0.5258 0.545378,-0.5258 l 2.055681,0 c 0.300638,0 0.541178,0.236 0.541178,0.5258 l 0,0.5743 0.39855,0 0,-0.9625 c 0,-0.3549 -0.29472,-0.6391 -0.662846,-0.6391 l -2.659792,0 z"></path>
+     <path d="m 8.6067054,1033.6894 c -0.1840631,0.3074 -0.076203,0.6955 0.2426131,0.8729 l 0.8647052,0.4813 0.2223481,-0.3712 -0.5159122,-0.2872 c -0.2603576,-0.1449 -0.3499481,-0.4672 -0.199629,-0.7182 l 1.0278344,-1.7162 c 0.150332,-0.251 0.482562,-0.3339 0.74292,-0.189 l 0.515912,0.2872 0.199274,-0.3328 -0.864705,-0.4812 c -0.318816,-0.1775 -0.721408,-0.073 -0.9054712,0.2339 l -1.3298894,2.2205 z" class="a"></path>
+     <path class="a" d="m 8.5971764,1033.6931 c -0.1840761,0.3073 -0.076203,0.6955 0.2426131,0.8729 l 0.8647052,0.4813 0.2223486,-0.3713 -0.5159122,-0.2871 c -0.2603581,-0.1449 -0.3499481,-0.4672 -0.199629,-0.7182 l 1.0278339,-1.7163 c 0.150319,-0.251 0.482549,-0.3338 0.742907,-0.1889 l 0.515925,0.2871 0.199275,-0.3327 -0.864705,-0.4813 c -0.318817,-0.1774 -0.721409,-0.073 -0.9054717,0.2339 l -1.3298899,2.2206 z"></path>
+     <path class="a" d="m 9.6652647,1034.5304 -0.2181876,0.3643 0.023285,3.2173 0.5184322,-0.1457 0.00918,-3.2554 z"></path>
+     <path d="m 9.9439583,1041.2289 c 0.1840627,0.3074 0.5866417,0.4114 0.9054577,0.2339 l 0.864718,-0.4813 -0.222361,-0.3712 -0.515912,0.2871 c -0.260358,0.1449 -0.594688,0.059 -0.745007,-0.1924 l -1.027834,-1.7163 c -0.150319,-0.2509 -0.058642,-0.5697 0.2017161,-0.7147 l 0.5159252,-0.2871 -0.1992746,-0.3327 -0.8647052,0.4812 c -0.3188161,0.1775 -0.4266897,0.5656 -0.2426131,0.8729 l 1.3298899,2.2206 z" class="a"></path>
+     <path class="a" d="m 9.9439583,1041.2289 c 0.1840627,0.3074 0.5866417,0.4114 0.9054577,0.2339 l 0.864718,-0.4813 -0.222361,-0.3712 -0.515912,0.2871 c -0.260358,0.1449 -0.594688,0.059 -0.745007,-0.1924 l -1.027834,-1.7163 c -0.150319,-0.2509 -0.058642,-0.5697 0.2017161,-0.7147 l 0.5159252,-0.2871 -0.1992746,-0.3327 -0.8647052,0.4812 c -0.3188161,0.1775 -0.4266897,0.5656 -0.2426131,0.8729 l 1.3298899,2.2206 z"></path>
+     <path d="m 9.9199788,1041.2035 c 0.1840762,0.3073 0.5866552,0.4113 0.9054712,0.2339 l 0.864705,-0.4813 -0.222348,-0.3713 -0.515925,0.2872 c -0.260358,0.1449 -0.594675,0.058 -0.744994,-0.1925 l -1.027847,-1.7162 c -0.150319,-0.251 -0.058628,-0.5698 0.2017291,-0.7147 l 0.5159122,-0.2871 -0.1992746,-0.3328 -0.8647052,0.4813 c -0.3188161,0.1774 -0.4266762,0.5656 -0.2426131,0.8729 l 1.3298894,2.2206 z" class="a"></path>
+     <path d="m 11.206216,1040.7304 0.218135,0.3643 2.901919,1.5892 0.128283,-0.5057 -2.919849,-1.6353 z" class="a"></path>
+     <path class="a" d="m 17.363114,1043.847 c 0.368126,0 0.662845,-0.2841 0.662845,-0.639 l 1.3e-5,-0.9626 -0.44471,0 0,0.5743 c 0,0.2899 -0.244752,0.5258 -0.54539,0.5258 l -2.055668,0 c -0.300638,0 -0.541178,-0.2359 -0.541178,-0.5258 l -1.3e-5,-0.5743 -0.398537,0 0,0.9626 c 0,0.3549 0.294719,0.639 0.662846,0.639 l 2.659792,0 z"></path>
+     <path d="m 17.363114,1043.847 c 0.368126,0 0.662845,-0.2841 0.662845,-0.639 l 1.3e-5,-0.9626 -0.44471,0 0,0.5743 c 0,0.2899 -0.244752,0.5258 -0.54539,0.5258 l -2.055668,0 c -0.300638,0 -0.541178,-0.2359 -0.541178,-0.5258 l -1.3e-5,-0.5743 -0.398537,0 0,0.9626 c 0,0.3549 0.294719,0.639 0.662846,0.639 l 2.659792,0 z" class="a"></path>
+     <path class="a" d="m 17.379769,1043.8589 c 0.36814,0 0.662846,-0.2842 0.662846,-0.6391 l 1.3e-5,-0.9625 -0.444697,0 -1.3e-5,0.5743 c 0,0.2898 -0.244726,0.5257 -0.545364,0.5257 l -2.055695,1e-4 c -0.300638,0 -0.541178,-0.236 -0.541178,-0.5258 l 0,-0.5743 -0.398549,0 0,0.9625 c 0,0.3549 0.294719,0.6391 0.662858,0.6391 l 2.659779,0 z"></path>
+     <path class="a" d="m 17.597918,1042.5485 0.436323,0 2.878637,-1.6281 -0.39015,-0.36 -2.928997,1.6201 z"></path>
+     <path d="m 23.476123,1038.9666 c 0.18405,-0.3074 0.07619,-0.6955 -0.242626,-0.8729 l -0.864692,-0.4813 -0.222349,0.3712 0.515913,0.2872 c 0.260358,0.1449 0.349935,0.4672 0.199616,0.7182 l -1.027835,1.7162 c -0.150319,0.251 -0.482548,0.3339 -0.742905,0.189 l -0.515912,-0.2872 -0.199289,0.3327 0.864718,0.4813 c 0.318816,0.1775 0.721408,0.073 0.905458,-0.2339 l 1.329903,-2.2205 z" class="a"></path>
+     <path class="a" d="m 23.476123,1038.9666 c 0.18405,-0.3074 0.07619,-0.6955 -0.242626,-0.8729 l -0.864692,-0.4813 -0.222349,0.3712 0.515913,0.2872 c 0.260358,0.1449 0.349935,0.4672 0.199616,0.7182 l -1.027835,1.7162 c -0.150319,0.251 -0.482548,0.3339 -0.742905,0.189 l -0.515912,-0.2872 -0.199289,0.3327 0.864718,0.4813 c 0.318816,0.1775 0.721408,0.073 0.905458,-0.2339 l 1.329903,-2.2205 z"></path>
+     <path d="m 23.485652,1038.9629 c 0.184063,-0.3074 0.07619,-0.6955 -0.242626,-0.8729 l -0.864692,-0.4813 -0.222349,0.3713 0.515912,0.2871 c 0.260358,0.1449 0.349935,0.4672 0.199616,0.7182 l -1.027834,1.7163 c -0.150319,0.251 -0.482549,0.3338 -0.742906,0.1889 l -0.515912,-0.2872 -0.199275,0.3328 0.864705,0.4813 c 0.318816,0.1774 0.721408,0.073 0.905471,-0.2339 l 1.32989,-2.2206 z" class="a"></path>
+     <path d="m 22.417564,1038.1256 0.218188,-0.3643 -0.02328,-3.2173 -0.518446,0.1457 -0.0092,3.2554 z" class="a"></path>
+     <path class="a" d="m 22.13887,1031.4271 c -0.184076,-0.3074 -0.586655,-0.4114 -0.905458,-0.2339 l -0.864718,0.4812 0.222349,0.3713 0.515925,-0.2871 c 0.260357,-0.1449 0.594687,-0.059 0.745006,0.1924 l 1.027834,1.7162 c 0.150319,0.251 0.05864,0.5698 -0.201716,0.7148 l -0.515925,0.2871 0.199275,0.3327 0.864705,-0.4812 c 0.318816,-0.1775 0.426676,-0.5656 0.242613,-0.8729 l -1.32989,-2.2206 z"></path>
+     <path d="m 22.13887,1031.4271 c -0.184076,-0.3074 -0.586655,-0.4114 -0.905458,-0.2339 l -0.864718,0.4812 0.222349,0.3713 0.515925,-0.2871 c 0.260357,-0.1449 0.594687,-0.059 0.745006,0.1924 l 1.027834,1.7162 c 0.150319,0.251 0.05864,0.5698 -0.201716,0.7148 l -0.515925,0.2871 0.199275,0.3327 0.864705,-0.4812 c 0.318816,-0.1775 0.426676,-0.5656 0.242613,-0.8729 l -1.32989,-2.2206 z" class="a"></path>
+     <path class="a" d="m 22.162836,1031.4202 c -0.184063,-0.3074 -0.586642,-0.4114 -0.905458,-0.2339 l -0.864705,0.4812 0.222349,0.3713 0.515912,-0.2871 c 0.260357,-0.1449 0.594661,-0.059 0.74498,0.1924 l 1.02786,1.7162 c 0.150319,0.251 0.05864,0.5698 -0.201716,0.7147 l -0.515925,0.2872 0.199275,0.3327 0.864705,-0.4813 c 0.318816,-0.1774 0.426689,-0.5655 0.242626,-0.8729 l -1.329903,-2.2205 z"></path>
+     <path class="a" d="m 20.876601,1031.8932 -0.218122,-0.3643 -2.901921,-1.5892 -0.128309,0.5057 2.919863,1.6353 z"></path>
+     <path d="m 14.719701,1028.7766 c -0.368126,10e-5 -0.662832,0.2842 -0.662832,0.6391 l -2.6e-5,0.9625 0.44471,0 1.3e-5,-0.5743 c -1.3e-5,-0.2898 0.24474,-0.5258 0.545378,-0.5258 l 2.055681,0 c 0.300638,0 0.541177,0.236 0.541177,0.5258 l -1.3e-5,0.5743 0.398563,0 0,-0.9626 c 0,-0.3549 -0.294745,-0.639 -0.662858,-0.6389 l -2.659793,-10e-5 z" class="a"></path>
+     <g transform="matrix(0.13923478,0,0,0.13729347,-66.595043,772.72642)" style="fill:#fafafa;fill-opacity:1">
+       <path class="a" d="m 581.34724,1872.2501 -3.32427,-3e-4 -21.93274,12.5802 2.97267,2.7813 22.31631,-12.5178 z"></path>
+       <path d="m 536.48793,1899.9554 c -1.40242,2.3748 -0.58054,5.3736 1.84855,6.7447 l 6.58826,3.7188 1.6941,-2.8687 -3.93081,-2.2188 c -1.9837,-1.1197 -2.66627,-3.61 -1.52096,-5.5494 l 7.83122,-13.2611 c 1.1453,-1.9394 3.67662,-2.5796 5.66032,-1.4599 l 3.93082,2.2188 1.51829,-2.571 -6.58826,-3.7188 c -2.42908,-1.3711 -5.49648,-0.5675 -6.89889,1.8073 l -10.13264,17.1581 z" class="a"></path>
+       <path d="m 544.62584,1906.4252 -1.6624,2.8145 0.17739,24.86 3.95006,-1.1262 0.0697,-25.1536 z" class="a"></path>
+       <path class="a" d="m 546.56659,1957.987 c 1.40244,2.3748 4.46977,3.1783 6.89885,1.8072 l 6.58831,-3.7187 -1.6941,-2.8687 -3.93084,2.2187 c -1.9837,1.1197 -4.53094,0.4525 -5.67624,-1.4869 l -7.8313,-13.2611 c -1.1453,-1.9394 -0.44674,-4.4027 1.53696,-5.5224 l 3.93086,-2.2187 -1.5183,-2.571 -6.5883,3.7187 c -2.42909,1.3711 -3.25094,4.37 -1.84851,6.7448 l 10.13261,17.1581 z"></path>
+       <path class="a" d="m 556.36661,1954.3317 1.66194,2.8148 22.11011,12.2798 0.97742,-3.9075 -22.24667,-12.6358 z"></path>
+       <path d="m 603.40369,1978.5047 c 2.80486,0 5.05028,-2.1953 5.05028,-4.9375 l 6e-5,-7.4375 -3.3882,0 -6e-5,4.4375 c 0,2.2394 -1.86463,4.0624 -4.15524,4.0624 l -15.66255,10e-5 c -2.29061,0 -4.12336,-1.8231 -4.12336,-4.0625 l 6e-5,-4.4375 -3.03658,0 -6e-5,7.4375 c -10e-6,2.7422 2.24554,4.9375 5.0504,4.9375 l 20.26525,0 z" class="a"></path>
+       <path d="m 605.06577,1968.3796 3.32437,3e-4 21.93271,-12.5802 -2.97262,-2.7814 -22.31634,12.5179 z" class="a"></path>
+       <path class="a" d="m 649.92518,1940.6743 c 1.40243,-2.3748 0.5805,-5.3736 -1.84858,-6.7447 l -6.58824,-3.7188 -1.69409,2.8687 3.93078,2.2188 c 1.9837,1.1197 2.66623,3.6099 1.52093,5.5493 l -7.8312,13.2612 c -1.14531,1.9394 -3.67661,2.5796 -5.6603,1.4599 l -3.93079,-2.2188 -1.51829,2.571 6.58824,3.7188 c 2.42908,1.3711 5.49649,0.5675 6.89892,-1.8073 l 10.13262,-17.1581 z"></path>
+       <path class="a" d="m 641.78724,1934.2045 1.66244,-2.8145 -0.17739,-24.86 -3.95013,1.1261 -0.0696,25.1537 z"></path>
+       <path d="m 639.8465,1882.3927 c -1.40243,-2.3748 -4.46978,-3.1783 -6.89886,-1.8072 l -6.58831,3.7187 1.6941,2.8687 3.93085,-2.2187 c 1.98369,-1.1197 4.53082,-0.4525 5.67612,1.4869 l 7.83141,13.2611 c 1.1453,1.9394 0.44674,4.4027 -1.53695,5.5223 l -3.93085,2.2188 1.5183,2.571 6.58829,-3.7188 c 2.42909,-1.371 3.25094,-4.3699 1.84853,-6.7448 l -10.13263,-17.158 z" class="a"></path>
+       <path d="m 630.04646,1886.048 -1.66191,-2.8148 -22.11011,-12.2799 -0.97754,3.9076 22.2468,12.6357 z" class="a"></path>
+       <path class="a" d="m 583.13631,1861.9666 c -2.8048,10e-5 -5.05028,2.1953 -5.05028,4.9375 l -2e-4,7.4375 3.38832,0 7e-5,-4.4375 c -10e-6,-2.2394 1.86475,-4.0625 4.15536,-4.0625 l 15.66244,0 c 2.29061,-10e-5 4.12335,1.823 4.12335,4.0625 l -7e-5,4.4375 3.03665,10e-5 10e-6,-7.4377 c 0,-2.7422 -2.24568,-4.9374 -5.05035,-4.9373 l -20.2653,-10e-5 z"></path>
+     </g>
+     <g transform="matrix(0.13124862,0,0,0.12941864,-81.212747,787.66619)" style="fill:#fafafa;fill-opacity:1">
+       <path class="a" d="m 740.67163,1890.9357 c -17.15903,0 -31.06918,13.5994 -31.06918,30.375 0,16.7756 13.91015,30.375 31.06918,30.375 17.15903,0 31.06917,-13.5994 31.06917,-30.375 0,-16.7756 -13.91014,-30.375 -31.06917,-30.375 z m -0.12786,3.25 c 15.3937,0 27.87276,12.2002 27.87276,27.25 0,15.0498 -12.47906,27.25 -27.87276,27.25 -15.3937,0 -27.87276,-12.2002 -27.87276,-27.25 0,-15.0498 12.47906,-27.25 27.87276,-27.25 z"></path>
+       <path d="m 740.79949,1892.4357 c -16.24107,0 -29.40704,12.8718 -29.40704,28.75 0,15.8782 13.16597,28.75 29.40704,28.75 16.24106,0 29.40703,-12.8718 29.40703,-28.75 0,-15.8782 -13.16597,-28.75 -29.40703,-28.75 z m -0.12102,3.0762 c 14.57017,0 26.38162,11.5474 26.38162,25.7921 0,14.2447 -11.81145,25.7922 -26.38162,25.7922 -14.57017,0 -26.38162,-11.5475 -26.38162,-25.7922 0,-14.2447 11.81145,-25.7921 26.38162,-25.7921 z" class="a"></path>
+       <path class="a" d="m 740.77525,1894.557 c -15.05611,0 -27.26148,11.9326 -27.26148,26.6524 0,14.7197 12.20537,26.6524 27.26148,26.6524 15.0561,0 27.26147,-11.9327 27.26147,-26.6524 0,-14.7198 -12.20537,-26.6524 -27.26147,-26.6524 z m -0.11219,2.8517 c 13.50711,0 24.4568,10.705 24.4568,23.9104 0,13.2054 -10.94969,23.9104 -24.4568,23.9104 -13.50711,0 -24.4568,-10.705 -24.4568,-23.9104 0,-13.2054 10.94969,-23.9104 24.4568,-23.9104 z"></path>
+     </g>
+     <path class="a" d="m 14.597929,1028.3622 c -0.390531,0 -0.703414,0.3014 -0.703414,0.6779 l 0,0.734 -0.0087,0 -2.761602,1.5619 -0.650088,-0.362 c -0.338201,-0.1882 -0.7652708,-0.078 -0.9605294,0.2483 l -1.4109223,2.3555 c -0.1952721,0.3261 -0.080836,0.7377 0.2573785,0.9259 l 0.6441942,0.3587 0.022035,3.0259 -0.6736727,0.3751 c -0.3382146,0.1883 -0.4526371,0.6001 -0.2573655,0.9262 l 1.4109228,2.3556 c 0.1952716,0.326 0.6223154,0.4364 0.9605164,0.2482 l 0.644195,-0.3587 2.784163,1.5247 0,0.725 c -1.3e-5,0.3764 0.312621,0.6776 0.703165,0.6776 l 2.821582,0 c 0.390531,0 0.703152,-0.3012 0.703152,-0.6776 l 0,-0.7174 2.752638,-1.5568 0.650087,0.3619 c 0.338215,0.1883 0.765508,0.078 0.96078,-0.2482 l 1.410672,-2.3555 c 0.195273,-0.3261 0.08082,-0.738 -0.257378,-0.9262 l -0.644194,-0.3587 -0.02204,-3.06 0.673672,-0.3751 c 0.338215,-0.1883 0.452887,-0.6001 0.257628,-0.9262 l -1.410922,-2.3556 c -0.195272,-0.326 -0.622316,-0.4364 -0.96053,-0.2482 l -0.644457,0.3587 -2.766209,-1.5151 0,-0.7219 c 0,-0.3765 -0.312661,-0.678 -0.703165,-0.6779 l -2.821582,0 z m 0.347087,0.532 2.180735,0 c 0.318934,0 0.574212,0.2504 0.574212,0.5579 l 0,0.6092 0.0019,0 -0.01821,0.071 3.097678,1.7347 0.348373,-0.1989 0.269926,-0.1501 c 0.276186,-0.1538 0.630846,-0.062 0.790313,0.2042 l 1.09023,1.8207 c 0.159467,0.2663 0.06216,0.6043 -0.21404,0.7581 l -0.547294,0.3045 0.0013,0 -0.0987,0.028 -0.0097,3.4534 0.352994,0.1916 0.269925,0.1501 c 0.2762,0.1537 0.371211,0.4956 0.211744,0.7619 l -1.090493,1.8207 c -0.159467,0.2662 -0.511804,0.3541 -0.788003,0.2004 l -0.547293,-0.3046 -0.0059,0.01 -0.06024,-0.056 -3.107154,1.7188 0.0046,0.3903 0,0.3003 c 0,0.3075 -0.259636,0.5579 -0.57857,0.5579 l -2.180735,0 c -0.318934,0 -0.574213,-0.2504 -0.574213,-0.5579 l 0,-0.6092 -0.02255,0 0.02127,-0.084 -3.097415,-1.7347 -0.348635,0.1989 -0.269677,0.1501 c -0.2762,0.1538 -0.6308467,0.062 -0.7903138,-0.2042 l -1.0904923,-1.8207 c -0.159467,-0.2663 -0.062146,-0.6043 0.2140536,-0.7581 l 0.4291171,-0.2388 0.2158516,-0.061 0.00971,-3.4534 -0.3529931,-0.1916 -0.2696766,-0.1501 c -0.2761996,-0.1537 -0.3711971,-0.4956 -0.2117301,-0.7619 l 1.0902298,-1.8207 c 0.1594668,-0.2662 0.5120658,-0.3541 0.7882658,-0.2004 l 0.547294,0.3046 0.0059,-0.01 0.05998,0.055 3.107166,-1.7185 -0.0013,-0.1032 0.01434,0 0,-0.6092 c 0,-0.3074 0.259636,-0.5578 0.57857,-0.5578 z"></path>
+   </g>
+ </svg>
+       </span>
+    </p>
+ 
+    <div id="last_login">Last login: 12/12/2025 at  9:48 pm</div>
+    <div id="copyright">Copyright © Community Computer Service Inc.</div>
+    <div id="corporateLink">Powered by <a href="https://www.medent.com/" target="_blank" rel="noopener" class="clickable_link">medent™</a></div>
+    <div id="sLoginId">
+       <hr>
+       Support user <br>
+       You are logged in as Clark Street Health (Ge46M78P)<br>
+       Web version <span id="jsVersion">2025.12.10.06.35.43</span><br>
+       medent version 237 (23702268)<br>
+       Home directory <br>
+    </div>
+ </footer>
+                <div id="system-vars">
+                   <input type="hidden" id="sMmSessionId" name="sMmSessionId" value="fam69v787hvcil18b28pcuud8c" form="">
+                   <input type="hidden" id="sPracticeId" name="sPracticeId" value="Ge46M78P" form="">
+                   <input type="hidden" id="sPracticeName" name="sPracticeName" value="ORCHARD PARK FAMILY PRACTICE, PC">
+                   <input type="hidden" id="sMobileId" name="sMobileId" value="Ge46M78PkrLQQ" form="">
+                   <input type="hidden" id="sMobileUserId" name="sMobileUserId" value="17543" form="">
+                   <input type="hidden" id="sMedentSessionId" name="sMedentSessionId" value="3UHyIe3a" form="">
+                   <input type="hidden" id="sMobileUserName" name="sMobileUserName" value="Clark Street Health" form="">
+                   <input type="hidden" id="iTimeout" value="1200">
+                   <input type="hidden" id="bIsLoggedIn" value="1"> 
+                   <input type="hidden" id="sMobileSection" value="mobile_sub_menu">
+                </div><!-- system-vars -->
+ </section><!-- page-container -->
+       <div id="js-vars">
+          <input type="hidden" id="bIsSystemReady" value="0"> 
+          <input type="hidden" id="bIsSystemInitialized" value="1"> 
+          <input type="hidden" id="bIsPageLoaded" value="1"> 
+       </div><!-- js-vars -->
+ 
+    </div><!-- simulate-mobile-page -->
+    <div id="keyboard_spacer"></div>
+ 
+    <div id="reload_cache" style="display:none">
+       <div>
+          <div>A new version of Medent Mobile is available</div>
+          <span id="reload_cache_now" class="clickable_link">REFRESH</span>
+          <span id="reload_cache_cancel" class="clickable_link">DISMISS</span>
+       </div>
+    </div>
+ 
+    
+    
+ 
+ 
+ <div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><div id="1p-live-region" role="status" aria-live="polite" aria-atomic="true" aria-relevant="all" style="clip: rect(0px, 0px, 0px, 0px); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; overflow-wrap: normal;"></div><div id="1p-live-region" role="status" aria-live="polite" aria-atomic="true" aria-relevant="all" style="clip: rect(0px, 0px, 0px, 0px); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; overflow-wrap: normal;"></div><div id="1p-live-region" role="status" aria-live="polite" aria-atomic="true" aria-relevant="all" style="clip: rect(0px, 0px, 0px, 0px); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; overflow-wrap: normal;"></div></body></html>
