@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './portal.css';
 import { ViewState, Patient, Medication } from './types';
 
@@ -19,32 +19,49 @@ import TriageNew from './components/views/TriageNew';
 export default function NewPortal() {
   // View state management
   const [view, setView] = useState<ViewState>({ screen: 'login-userid' });
-  const [history, setHistory] = useState<ViewState[]>([]);
   const [currentUser, setCurrentUser] = useState('');
 
+  // Listen for browser back/forward button
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state?.view) {
+        setView(event.state.view);
+        if (event.state.currentUser !== undefined) {
+          setCurrentUser(event.state.currentUser);
+        }
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    // Set initial state on mount
+    window.history.replaceState({ view, currentUser }, '');
+
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   // Navigation functions
-  const navigate = (newView: ViewState) => {
-    setHistory((prev) => [...prev, view]);
+  const navigate = (newView: ViewState, user?: string) => {
     setView(newView);
+    window.history.pushState({ view: newView, currentUser: user ?? currentUser }, '');
   };
 
   const goBack = () => {
-    const prev = history[history.length - 1];
-    if (prev) {
-      setHistory((h) => h.slice(0, -1));
-      setView(prev);
-    }
+    window.history.back();
   };
 
   const goHome = () => {
-    setHistory([]);
-    setView({ screen: 'dashboard' });
+    const homeView: ViewState = { screen: 'dashboard' };
+    setView(homeView);
+    window.history.pushState({ view: homeView, currentUser }, '');
   };
 
   const handleLogout = () => {
-    setHistory([]);
+    const loginView: ViewState = { screen: 'login-userid' };
     setCurrentUser('');
-    setView({ screen: 'login-userid' });
+    setView(loginView);
+    // Replace current state to prevent going back to authenticated pages
+    window.history.replaceState({ view: loginView, currentUser: '' }, '');
   };
 
   // Render the appropriate view based on current state
@@ -55,7 +72,7 @@ export default function NewPortal() {
           <LoginUserId
             onNext={(userId) => {
               setCurrentUser(userId);
-              navigate({ screen: 'login-password', userId });
+              navigate({ screen: 'login-password', userId }, userId);
             }}
           />
         );

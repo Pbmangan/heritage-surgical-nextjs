@@ -68,7 +68,7 @@ export type ViewState =
 
 // Navigation context for child components
 export interface NavigationContext {
-  navigate: (view: ViewState) => void;
+  navigate: (view: ViewState, user?: string) => void;
   goBack: () => void;
   goHome: () => void;
   currentUser: string;
