@@ -1,0 +1,48 @@
+import { Triage } from '../types';
+
+export const triages: Triage[] = [
+  {
+    id: 1,
+    patientId: 1,
+    patientName: 'Susan A',
+    type: 'MP Evisit',
+    description: 'e-Visits Available',
+    status: 'Closed',
+    rating: '1 Normal',
+    date: '02/07/19',
+    createdBy: 'SJ',
+  },
+  {
+    id: 2,
+    patientId: 2,
+    patientName: 'Carol G',
+    type: 'MP Appt',
+    description: 'call office to make an appoinment',
+    status: 'Closed',
+    rating: '1 Normal',
+    date: '11/14/18',
+    createdBy: 'CG',
+  },
+  {
+    id: 3,
+    patientId: 3,
+    patientName: 'John D',
+    type: 'MP Appt',
+    description: 'Follow-up appointment needed',
+    status: 'Open',
+    rating: '2 Urgent',
+    date: '12/15/24',
+    createdBy: 'JM',
+  },
+  {
+    id: 4,
+    patientId: 4,
+    patientName: 'Mary S',
+    type: 'MP Evisit',
+    description: 'Lab results review',
+    status: 'Open',
+    rating: '1 Normal',
+    date: '12/20/24',
+    createdBy: 'PM',
+  },
+];

@@ -45,6 +45,22 @@ export interface Drug {
   manufacturer?: string;
 }
 
+export interface Triage {
+  id: number;
+  patientId: number;
+  patientName: string;
+  type: string; // MP Evisit, MP Appt, etc.
+  description: string;
+  status: 'Open' | 'Closed';
+  rating: '1 Normal' | '2 Urgent' | '3 Critical';
+  user?: string;
+  reason?: string;
+  subject?: string;
+  message?: string;
+  date: string; // MM/DD/YY format
+  createdBy: string; // Initials like "SJ", "CG"
+}
+
 export interface SearchQuery {
   lastName?: string;
   firstName?: string;
@@ -64,7 +80,8 @@ export type ViewState =
   | { screen: 'medications'; patient: Patient }
   | { screen: 'medication-detail'; patient: Patient; medication: Medication }
   | { screen: 'drug-lookup'; patient?: Patient }
-  | { screen: 'triage-new'; patient?: Patient };
+  | { screen: 'triage-list'; patient: Patient }
+  | { screen: 'triage-new'; patient: Patient };
 
 // Navigation context for child components
 export interface NavigationContext {

@@ -14,6 +14,7 @@ import PatientChart from './components/views/PatientChart';
 import Medications from './components/views/Medications';
 import MedicationDetail from './components/views/MedicationDetail';
 import DrugLookup from './components/views/DrugLookup';
+import TriageList from './components/views/TriageList';
 import TriageNew from './components/views/TriageNew';
 
 export default function NewPortal() {
@@ -153,6 +154,18 @@ export default function NewPortal() {
       case 'drug-lookup':
         return (
           <DrugLookup
+            patient={view.patient}
+            userName={currentUser}
+            navigate={navigate}
+            goBack={goBack}
+            goHome={goHome}
+            onLogout={handleLogout}
+          />
+        );
+
+      case 'triage-list':
+        return (
+          <TriageList
             patient={view.patient}
             userName={currentUser}
             navigate={navigate}

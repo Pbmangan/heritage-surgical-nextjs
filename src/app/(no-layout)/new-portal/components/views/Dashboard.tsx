@@ -56,7 +56,7 @@ export default function Dashboard({ userName, navigate, onLogout }: DashboardPro
               actionId="2"
               label="My Triage"
               icon={<MyTriageIcon />}
-              onClick={() => navigate({ screen: 'triage-new' })}
+              onClick={() => alert('My Triage - Select a patient from Chart Lookup first')}
             />
             <MenuButton
               id="menuId_74"

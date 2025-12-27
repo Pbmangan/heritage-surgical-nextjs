@@ -37,7 +37,7 @@ export default function PatientChart({
     {
       id: `^22^P${patient.id}^D0`,
       label: 'Triage',
-      onClick: () => navigate({ screen: 'triage-new', patient }),
+      onClick: () => navigate({ screen: 'triage-list', patient }),
     },
     {
       id: `^20^P${patient.id}^D0`,

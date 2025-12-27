@@ -117,6 +117,45 @@ const RxIcon = () => (
   </svg>
 );
 
+const RefreshIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" height="32" width="32">
+    <path
+      d="M16 4C9.373 4 4 9.373 4 16s5.373 12 12 12c5.018 0 9.372-3.092 11.13-7.469l-2.457-.812C23.438 22.96 20.005 26 16 26c-5.514 0-10-4.486-10-10S10.486 6 16 6c2.762 0 5.262 1.124 7.071 2.929L19 13h9V4l-3.879 3.879C21.839 5.613 19.094 4 16 4z"
+      style={{ fill: '#ffffff' }}
+    />
+  </svg>
+);
+
+const SubmitIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" height="32" width="32">
+    <path d="M12 24l-8-8 2.83-2.83L12 18.34l13.17-13.17L28 8z" fill="#ffffff" />
+  </svg>
+);
+
+const PortalIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" height="32" width="32">
+    <circle cx="16" cy="10" r="6" fill="#ffffff" />
+    <path d="M16 18c-6 0-11 3-11 7v3h22v-3c0-4-5-7-11-7z" fill="#ffffff" />
+  </svg>
+);
+
+const CloseExitIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" height="32" width="32">
+    <text x="4" y="22" style={{ fill: '#ffffff', fontSize: '14px', fontWeight: 'bold', fontStyle: 'italic' }}>
+      CE
+    </text>
+  </svg>
+);
+
+const EmailIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" height="32" width="32">
+    <path
+      d="M4 8v16h24V8H4zm22 2l-10 6-10-6h20zm-20 12V12l10 6 10-6v10H6z"
+      fill="#ffffff"
+    />
+  </svg>
+);
+
 export const iconMap: Record<string, React.ReactNode> = {
   back: <BackIcon />,
   home: <HomeIcon />,
@@ -128,6 +167,11 @@ export const iconMap: Record<string, React.ReactNode> = {
   cancel: <CancelIcon />,
   done: <DoneIcon />,
   rx: <RxIcon />,
+  refresh: <RefreshIcon />,
+  submit: <SubmitIcon />,
+  portal: <PortalIcon />,
+  closeExit: <CloseExitIcon />,
+  email: <EmailIcon />,
 };
 
 export default function PortalHeader({ buttons = [], showLogo = false }: PortalHeaderProps) {
@@ -206,6 +250,40 @@ export function getMedicationDetailHeader(
 export function getDrugLookupHeader(onCancel: () => void, goHome: () => void): HeaderButton[] {
   return [
     { id: 'icon_cancel', label: 'Cancel', icon: <CancelIcon />, onClick: onCancel },
+    { id: 'icon_go_home', label: 'Home', icon: <HomeIcon />, onClick: goHome },
+  ];
+}
+
+export function getTriageListHeader(
+  goBack: () => void,
+  onNewTriage: () => void,
+  onRefresh: () => void,
+  goHome: () => void
+): HeaderButton[] {
+  return [
+    { id: 'icon_go_back', label: 'Back', icon: <BackIcon />, onClick: goBack },
+    { id: 'icon_new_triage', label: 'New Triage', icon: <NewMedIcon />, onClick: onNewTriage },
+    { id: 'icon_refresh', label: 'Refresh', icon: <RefreshIcon />, onClick: onRefresh },
+    { id: 'icon_go_home', label: 'Home', icon: <HomeIcon />, onClick: goHome },
+  ];
+}
+
+export function getTriageNewHeader(
+  onSubmit: () => void,
+  onCancel: () => void,
+  onPortal: () => void,
+  onCloseExit: () => void,
+  onRefEmail: () => void,
+  onRefTriage: () => void,
+  goHome: () => void
+): HeaderButton[] {
+  return [
+    { id: 'icon_submit', label: 'Submit', icon: <SubmitIcon />, onClick: onSubmit },
+    { id: 'icon_cancel', label: 'Cancel', icon: <CancelIcon />, onClick: onCancel },
+    { id: 'icon_portal', label: 'Portal', icon: <PortalIcon />, onClick: onPortal },
+    { id: 'icon_close_exit', label: 'Close/Exit', icon: <CloseExitIcon />, onClick: onCloseExit },
+    { id: 'icon_ref_email', label: 'Ref Email', icon: <EmailIcon />, onClick: onRefEmail },
+    { id: 'icon_ref_triage', label: 'Ref Triage', icon: <NewMedIcon />, onClick: onRefTriage },
     { id: 'icon_go_home', label: 'Home', icon: <HomeIcon />, onClick: goHome },
   ];
 }

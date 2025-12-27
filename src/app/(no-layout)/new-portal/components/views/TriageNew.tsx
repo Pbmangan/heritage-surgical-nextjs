@@ -1,14 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import PortalHeader, { getChartLookupHeader } from '../PortalHeader';
+import PortalHeader, { getTriageNewHeader } from '../PortalHeader';
 import PortalFooter from '../PortalFooter';
 import PatientBanner from '../PatientBanner';
 import { Patient, ViewState } from '../../types';
-import { patients as allPatients } from '../../data/patients';
 
 interface TriageNewProps {
-  patient?: Patient;
+  patient: Patient;
   userName: string;
   navigate: (view: ViewState) => void;
   goBack: () => void;
@@ -24,197 +23,158 @@ export default function TriageNew({
   goHome,
   onLogout,
 }: TriageNewProps) {
-  const [selectedPatient, setSelectedPatient] = useState<Patient | undefined>(patient);
-  const [chiefComplaint, setChiefComplaint] = useState('');
-  const [temperature, setTemperature] = useState('');
-  const [bloodPressure, setBloodPressure] = useState('');
-  const [pulse, setPulse] = useState('');
-  const [respRate, setRespRate] = useState('');
-  const [oxygenSat, setOxygenSat] = useState('');
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  const [notes, setNotes] = useState('');
+  const [user, setUser] = useState('');
+  const [status, setStatus] = useState('Open');
+  const [reason, setReason] = useState('');
+  const [rating, setRating] = useState('1 Normal');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = () => {
-    if (!selectedPatient) {
-      alert('Please select a patient first');
-      return;
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/new-portal/api/triage', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          patientName: `${patient.firstName} ${patient.lastName}`,
+          patientDob: patient.dob,
+          patientId: patient.id,
+          user,
+          status,
+          reason,
+          rating,
+          subject,
+          message,
+          submittedBy: userName,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        const emailMsg = result.emailStatus === 'sent'
+          ? 'Email notification sent successfully.'
+          : 'Note: Email notification could not be sent.';
+        alert(`Triage entry saved for ${patient.firstName} ${patient.lastName}.\n\n${emailMsg}`);
+        goBack();
+      } else {
+        alert(`Error saving triage: ${result.error}`);
+      }
+    } catch (error) {
+      alert(`Error submitting triage: ${error}`);
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // In a real app, this would save the triage entry
-    alert(`Triage entry saved for ${selectedPatient.firstName} ${selectedPatient.lastName}`);
-    goHome();
   };
 
   const handleCancel = () => {
     goBack();
   };
 
+  const handlePortal = () => {
+    alert('Portal - Not implemented');
+  };
+
+  const handleCloseExit = () => {
+    goBack();
+  };
+
+  const handleRefEmail = () => {
+    alert('Ref Email - Not implemented');
+  };
+
+  const handleRefTriage = () => {
+    alert('Ref Triage - Not implemented');
+  };
+
   return (
     <div className="portal-container">
-      <PortalHeader buttons={getChartLookupHeader(goBack, goHome)} />
+      {isSubmitting && (
+        <div className="triage-loading-overlay">
+          <div className="triage-loading-spinner"></div>
+          <div>Submitting triage...</div>
+        </div>
+      )}
 
-      {selectedPatient && <PatientBanner patient={selectedPatient} />}
+      <PortalHeader
+        buttons={getTriageNewHeader(
+          handleSubmit,
+          handleCancel,
+          handlePortal,
+          handleCloseExit,
+          handleRefEmail,
+          handleRefTriage,
+          goHome
+        )}
+      />
+
+      <PatientBanner patient={patient} />
 
       <div className="portal-content">
-        <div className="portal-section-header">New Triage Entry</div>
-
-        <div className="portal-triage-form">
-          {/* Patient Selection (if not pre-selected) */}
-          {!patient && (
-            <div className="portal-triage-section">
-              <h3>Select Patient</h3>
-              <select
-                value={selectedPatient?.id || ''}
-                onChange={(e) => {
-                  const patientId = parseInt(e.target.value);
-                  const found = allPatients.find((p) => p.id === patientId);
-                  setSelectedPatient(found);
-                }}
-                style={{
-                  width: '100%',
-                  padding: 12,
-                  border: '1px solid #e0e0e0',
-                  borderRadius: 4,
-                  fontSize: 14,
-                }}
-              >
-                <option value="">Select a patient...</option>
-                {allPatients.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.lastName}, {p.firstName} ({p.dob})
-                  </option>
-                ))}
-              </select>
+        {/* Route Section */}
+        <div className="triage-section-header triage-section-route">Route</div>
+        <div className="triage-form-section">
+          <div className="triage-form-row triage-form-row-split">
+            <div className="triage-form-field">
+              <label>User</label>
+              <input
+                type="text"
+                value={user}
+                onChange={(e) => setUser(e.target.value)}
+                id="triageUser"
+                name="triageUser"
+              />
             </div>
-          )}
-
-          {/* Chief Complaint */}
-          <div className="portal-triage-section">
-            <h3>Chief Complaint</h3>
-            <textarea
-              value={chiefComplaint}
-              onChange={(e) => setChiefComplaint(e.target.value)}
-              placeholder="Enter chief complaint..."
-              id="chiefComplaint"
-              name="chiefComplaint"
-            />
-          </div>
-
-          {/* Vitals */}
-          <div className="portal-triage-section">
-            <h3>Vitals</h3>
-            <div className="portal-triage-vitals">
-              <div className="portal-form-row">
-                <label>Temperature (°F)</label>
-                <input
-                  type="text"
-                  value={temperature}
-                  onChange={(e) => setTemperature(e.target.value)}
-                  placeholder="98.6"
-                  id="temperature"
-                  name="temperature"
-                />
-              </div>
-              <div className="portal-form-row">
-                <label>Blood Pressure</label>
-                <input
-                  type="text"
-                  value={bloodPressure}
-                  onChange={(e) => setBloodPressure(e.target.value)}
-                  placeholder="120/80"
-                  id="bloodPressure"
-                  name="bloodPressure"
-                />
-              </div>
-              <div className="portal-form-row">
-                <label>Pulse (bpm)</label>
-                <input
-                  type="text"
-                  value={pulse}
-                  onChange={(e) => setPulse(e.target.value)}
-                  placeholder="72"
-                  id="pulse"
-                  name="pulse"
-                />
-              </div>
-              <div className="portal-form-row">
-                <label>Resp Rate</label>
-                <input
-                  type="text"
-                  value={respRate}
-                  onChange={(e) => setRespRate(e.target.value)}
-                  placeholder="16"
-                  id="respRate"
-                  name="respRate"
-                />
-              </div>
-              <div className="portal-form-row">
-                <label>O2 Sat (%)</label>
-                <input
-                  type="text"
-                  value={oxygenSat}
-                  onChange={(e) => setOxygenSat(e.target.value)}
-                  placeholder="98"
-                  id="oxygenSat"
-                  name="oxygenSat"
-                />
-              </div>
-              <div className="portal-form-row">
-                <label>Weight (lbs)</label>
-                <input
-                  type="text"
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  placeholder="150"
-                  id="weight"
-                  name="weight"
-                />
-              </div>
-              <div className="portal-form-row">
-                <label>Height</label>
-                <input
-                  type="text"
-                  value={height}
-                  onChange={(e) => setHeight(e.target.value)}
-                  placeholder="5ft 10in"
-                  id="height"
-                  name="height"
-                />
-              </div>
+            <div className="triage-form-field">
+              <label>Status</label>
+              <div className="triage-form-value">{status}</div>
             </div>
           </div>
+          <div className="triage-form-row triage-form-row-split">
+            <div className="triage-form-field">
+              <label>Reason</label>
+              <input
+                type="text"
+                value={reason}
+                onChange={(e) => setReason(e.target.value)}
+                id="triageReason"
+                name="triageReason"
+              />
+            </div>
+            <div className="triage-form-field">
+              <label>Rating</label>
+              <div className="triage-form-value">{rating}</div>
+            </div>
+          </div>
+        </div>
 
-          {/* Notes */}
-          <div className="portal-triage-section">
-            <h3>Additional Notes</h3>
-            <textarea
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              placeholder="Enter additional notes..."
-              id="triageNotes"
-              name="triageNotes"
+        {/* Subject & Message Section */}
+        <div className="triage-section-header triage-section-route">Subject &amp; Message</div>
+        <div className="triage-form-section">
+          <div className="triage-form-row">
+            <label>Subject</label>
+            <input
+              type="text"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              id="triageSubject"
+              name="triageSubject"
             />
           </div>
-
-          {/* Action Buttons */}
-          <div className="portal-triage-section" style={{ display: 'flex', gap: 16 }}>
-            <button
-              onClick={handleSubmit}
-              className="portal-login-btn"
-              style={{ flex: 1 }}
-              id="submitTriage"
-            >
-              Save Triage
-            </button>
-            <button
-              onClick={handleCancel}
-              className="portal-login-btn"
-              style={{ flex: 1, backgroundColor: '#757575' }}
-              id="cancelTriage"
-            >
-              Cancel
-            </button>
+          <div className="triage-form-row">
+            <label>Message</label>
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              id="triageMessage"
+              name="triageMessage"
+              rows={4}
+            />
           </div>
         </div>
       </div>
