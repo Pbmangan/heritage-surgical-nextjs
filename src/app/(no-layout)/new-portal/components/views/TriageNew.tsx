@@ -131,85 +131,128 @@ export default function TriageNew({
       <PatientBanner patient={patient} />
 
       <div className="portal-content">
-        {/* Route Section */}
-        <div className="triage-section-header triage-section-route">Route</div>
-        <div className="triage-form-section">
-          <div className="triage-route-row">
-            <div className="triage-route-cell triage-route-cell-input triage-route-cell-clickable">
-              <label>User</label>
-              <div
-                className="triage-user-select"
-                onClick={() => setShowUserDropdown(!showUserDropdown)}
-                id="triageUser"
-              >
-                {user || <span className="triage-placeholder">&nbsp;</span>}
+        <form id="triage_detail_form" name="triage_detail_form">
+          {/* Route Section */}
+          <div className="sectionBanner">Route</div>
+          <div className="twoColumnText">
+            {/* Column A - User and Reason */}
+            <div className="columnA">
+              <div id="triage_user_div" className="ccs_lookup_field_group">
+                <label htmlFor="triage_user" className="ccs_lookup_field_label">User</label>
+                <input
+                  type="text"
+                  id="triage_user"
+                  name="triage_user"
+                  className="ccs_lookup_field_input"
+                  autoComplete="off"
+                  value={user}
+                  onClick={() => setShowUserDropdown(!showUserDropdown)}
+                  readOnly
+                />
+                {showUserDropdown && (
+                  <div id="triage_user_hints" className="ajax_hints triage-user-dropdown-visible">
+                    {mockUsers.map((u) => (
+                      <div
+                        key={u.id}
+                        className="triage-user-option"
+                        onClick={() => handleUserSelect(u)}
+                        data-user-id={u.id}
+                      >
+                        {u.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-              {showUserDropdown && (
-                <div className="triage-user-dropdown">
-                  {mockUsers.map((u) => (
-                    <div
-                      key={u.id}
-                      className="triage-user-option"
-                      onClick={() => handleUserSelect(u)}
-                      data-user-id={u.id}
-                    >
-                      {u.name}
-                    </div>
-                  ))}
-                </div>
-              )}
+
+              <div id="triage_reason_div" className="ccs_lookup_field_group">
+                <label htmlFor="triage_reason" className="ccs_lookup_field_label">Reason</label>
+                <input
+                  type="text"
+                  id="triage_reason"
+                  name="triage_reason"
+                  className="ccs_lookup_field_input"
+                  autoComplete="off"
+                  value={reason}
+                  onChange={(e) => setReason(e.target.value)}
+                />
+              </div>
             </div>
-            <div className="triage-route-cell triage-route-cell-value">
-              <label>Status</label>
-              <span>{status}</span>
+
+            {/* Column B - Status and Rating */}
+            <div className="columnB">
+              <div id="triage_status_div" className="ccs_lookup_field_group">
+                <label htmlFor="triage_status" className="ccs_lookup_field_label">Status</label>
+                <select
+                  id="triage_status"
+                  name="triage_status"
+                  className="ccs_lookup_field_select"
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                >
+                  <option value="Open">Open</option>
+                  <option value="Closed">Closed</option>
+                </select>
+              </div>
+
+              <div id="triage_rating_div" className="ccs_lookup_field_group">
+                <label htmlFor="triage_rating" className="ccs_lookup_field_label">Rating</label>
+                <select
+                  id="triage_rating"
+                  name="triage_rating"
+                  className="ccs_lookup_field_select"
+                  value={rating}
+                  onChange={(e) => setRating(e.target.value)}
+                >
+                  <option value="1 Normal">1 Normal</option>
+                  <option value="2 Priority">2 Priority</option>
+                  <option value="3 Urgent">3 Urgent</option>
+                </select>
+              </div>
             </div>
           </div>
-          <div className="triage-route-row">
-            <div className="triage-route-cell triage-route-cell-input">
-              <label>Reason</label>
+
+          {/* Subject & Message Section */}
+          <div className="sectionBanner">Subject &amp; Message</div>
+          <div>
+            <div id="triage_subject_div">
               <input
                 type="text"
-                value={reason}
-                onChange={(e) => setReason(e.target.value)}
-                id="triageReason"
-                name="triageReason"
+                id="triage_subject"
+                name="triage_subject"
+                className="ccs_lookup_field_input"
+                maxLength={80}
+                placeholder="Subject"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
               />
             </div>
-            <div className="triage-route-cell triage-route-cell-value">
-              <label>Rating</label>
-              <span>{rating}</span>
+
+            <div id="triage_message_div" className="ccs_lookup_field_group">
+              <textarea
+                id="triage_message"
+                name="triage_message"
+                className="ccs_lookup_field_textarea"
+                rows={3}
+                placeholder="Message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
             </div>
           </div>
-        </div>
 
-        {/* Subject & Message Section */}
-        <div className="triage-section-header triage-section-route">Subject &amp; Message</div>
-        <div className="triage-form-section">
-          <div className="triage-message-row">
-            <label>Subject</label>
+          {/* Hidden fields for compatibility */}
+          <div id="triage_hidden_fields" style={{ display: 'none' }}>
+            <input type="hidden" id="form_name" name="form_name" value="triage_detail_form" />
+            <input type="hidden" id="triage_id" name="triage_id" value="0" />
+            <input type="hidden" id="iPatient" value={patient.id} />
+            <input type="hidden" id="iIsDependent" value="0" />
+            <input type="hidden" id="sName" value={`${patient.firstName} ${patient.lastName}`} />
+            <input type="hidden" id="sGender" value={patient.gender} />
+            <input type="hidden" id="sDob" value={patient.dob} />
+            <input type="hidden" id="sAge" value={`${patient.age} yrs`} />
           </div>
-          <div className="triage-message-row triage-message-input">
-            <input
-              type="text"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-              id="triageSubject"
-              name="triageSubject"
-            />
-          </div>
-          <div className="triage-message-row">
-            <label>Message</label>
-          </div>
-          <div className="triage-message-row triage-message-textarea">
-            <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              id="triageMessage"
-              name="triageMessage"
-              rows={4}
-            />
-          </div>
-        </div>
+        </form>
       </div>
 
       <PortalFooter userName={userName} onLogout={onLogout} />

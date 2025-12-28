@@ -278,12 +278,12 @@ export function getTriageNewHeader(
   goHome: () => void
 ): HeaderButton[] {
   return [
-    { id: 'icon_submit', label: 'Submit', icon: <SubmitIcon />, onClick: onSubmit },
+    { id: 'icon_triage_submit', label: 'Submit', icon: <SubmitIcon />, onClick: onSubmit },
     { id: 'icon_cancel', label: 'Cancel', icon: <CancelIcon />, onClick: onCancel },
-    { id: 'icon_portal', label: 'Portal', icon: <PortalIcon />, onClick: onPortal },
-    { id: 'icon_close_exit', label: 'Close/Exit', icon: <CloseExitIcon />, onClick: onCloseExit },
-    { id: 'icon_ref_email', label: 'Ref Email', icon: <EmailIcon />, onClick: onRefEmail },
-    { id: 'icon_ref_triage', label: 'Ref Triage', icon: <NewMedIcon />, onClick: onRefTriage },
+    { id: 'icon_send_message_to_portal', label: 'Portal', icon: <PortalIcon />, onClick: onPortal },
+    { id: 'icon_triage_close_exit', label: 'Close/Exit', icon: <CloseExitIcon />, onClick: onCloseExit },
+    { id: 'icon_triage_create_ref_email', label: 'Ref Email', icon: <EmailIcon />, onClick: onRefEmail },
+    { id: 'icon_triage_create_ref_triage', label: 'Ref Triage', icon: <NewMedIcon />, onClick: onRefTriage },
     { id: 'icon_go_home', label: 'Home', icon: <HomeIcon />, onClick: goHome },
   ];
 }

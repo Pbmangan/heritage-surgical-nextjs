@@ -711,92 +711,82 @@
   text-align: center;
 }
 
-/* Triage Form */
-.triage-form-section {
+/* Triage Form - Medent-compatible styles */
+
+/* Section Banner */
+.sectionBanner {
+  background-color: var(--portal-section-header);
+  color: var(--portal-white);
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Two Column Layout */
+.twoColumnText {
+  display: flex;
   background: var(--portal-white);
 }
 
-/* Route Section - Horizontal label/value layout */
-.triage-route-row {
-  display: flex;
-  border-bottom: 1px solid var(--portal-border);
-}
-
-.triage-route-cell {
-  display: flex;
-  align-items: center;
-  padding: 12px 16px;
-  gap: 16px;
-}
-
-.triage-route-cell label {
-  font-size: 14px;
-  color: var(--portal-text);
-  white-space: nowrap;
-}
-
-.triage-route-cell-input {
+.columnA {
   flex: 1;
   border-right: 1px solid var(--portal-border);
 }
 
-.triage-route-cell-input input {
-  flex: 1;
-  padding: 4px 0;
-  border: none;
-  font-size: 14px;
-  font-family: inherit;
-  background: transparent;
-  color: var(--portal-text);
+.columnB {
+  min-width: 250px;
 }
 
-.triage-route-cell-input input:focus {
-  outline: none;
-}
-
-.triage-route-cell-value {
-  min-width: 200px;
-}
-
-.triage-route-cell-value span {
-  font-size: 14px;
-  color: var(--portal-text);
-}
-
-/* Subject & Message Section */
-.triage-message-row {
-  padding: 8px 16px;
+/* Field Groups */
+.ccs_lookup_field_group {
+  padding: 12px 16px;
   border-bottom: 1px solid var(--portal-border);
+  position: relative;
 }
 
-.triage-message-row label {
+.ccs_lookup_field_label {
+  display: block;
   font-size: 14px;
   color: var(--portal-text);
+  margin-bottom: 4px;
 }
 
-.triage-message-input {
-  padding: 4px 16px 12px;
-}
-
-.triage-message-input input {
+.ccs_lookup_field_input {
   width: 100%;
-  padding: 4px 0;
+  padding: 8px 0;
   border: none;
+  border-bottom: 1px solid transparent;
   font-size: 14px;
   font-family: inherit;
   background: transparent;
   color: var(--portal-text);
 }
 
-.triage-message-input input:focus {
+.ccs_lookup_field_input:focus {
+  outline: none;
+  border-bottom-color: var(--portal-primary);
+}
+
+.ccs_lookup_field_input::placeholder {
+  color: var(--portal-text-light);
+}
+
+.ccs_lookup_field_select {
+  width: 100%;
+  padding: 8px 0;
+  border: none;
+  font-size: 14px;
+  font-family: inherit;
+  background: transparent;
+  color: var(--portal-text);
+  cursor: pointer;
+}
+
+.ccs_lookup_field_select:focus {
   outline: none;
 }
 
-.triage-message-textarea {
-  padding: 4px 16px 12px;
-}
-
-.triage-message-textarea textarea {
+.ccs_lookup_field_textarea {
   width: 100%;
   min-height: 80px;
   padding: 8px;
@@ -808,34 +798,38 @@
   resize: vertical;
 }
 
-.triage-message-textarea textarea:focus {
+.ccs_lookup_field_textarea:focus {
   outline: none;
   border-color: var(--portal-primary);
 }
 
-/* User Dropdown */
-.triage-route-cell-clickable {
-  position: relative;
-  cursor: pointer;
-}
-
-.triage-user-select {
-  flex: 1;
-  padding: 4px 0;
-  font-size: 14px;
-  color: var(--portal-text);
-  min-height: 20px;
-}
-
-.triage-placeholder {
+.ccs_lookup_field_textarea::placeholder {
   color: var(--portal-text-light);
 }
 
-.triage-user-dropdown {
+/* Subject and Message section */
+#triage_subject_div {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--portal-border);
+  background: var(--portal-white);
+}
+
+#triage_message_div {
+  padding: 12px 16px;
+  background: var(--portal-white);
+}
+
+/* User Dropdown (ajax_hints style) */
+.ajax_hints {
+  display: none;
+}
+
+.ajax_hints.triage-user-dropdown-visible {
+  display: block;
   position: absolute;
   top: 100%;
   left: 0;
-  right: 16px;
+  right: 0;
   background: var(--portal-white);
   border: 1px solid var(--portal-border);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
