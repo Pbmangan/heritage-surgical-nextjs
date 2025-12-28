@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PortalHeader, { getChartLookupHeader } from '../PortalHeader';
 import PortalFooter from '../PortalFooter';
 import { Patient, ViewState } from '../../types';
@@ -29,6 +29,24 @@ export default function ChartLookup({
   const [results, setResults] = useState<Patient[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Auto-search when lastName changes (debounced)
+  useEffect(() => {
+    if (lastName.length >= 2) {
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
+      }
+      searchTimeoutRef.current = setTimeout(() => {
+        handleSearch();
+      }, 300);
+    }
+    return () => {
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
+      }
+    };
+  }, [lastName]);
 
   const handleSearch = async () => {
     setIsSearching(true);
@@ -90,9 +108,9 @@ export default function ChartLookup({
               value={lastName}
               onChange={(e) => handleInputChange(setLastName, e.target.value)}
               onKeyDown={handleKeyDown}
-              onBlur={handleSearch}
               id="lastName"
               name="lastName"
+              autoFocus
             />
           </div>
           <div className="portal-form-row">
