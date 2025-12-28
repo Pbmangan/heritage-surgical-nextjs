@@ -716,87 +716,148 @@
   background: var(--portal-white);
 }
 
-.triage-form-row {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--portal-border);
-}
-
-.triage-form-row label {
-  display: block;
-  font-size: 14px;
-  color: var(--portal-text);
-  margin-bottom: 4px;
-}
-
-.triage-form-row input,
-.triage-form-row textarea {
-  width: 100%;
-  padding: 8px 0;
-  border: none;
-  border-bottom: 1px solid var(--portal-border);
-  font-size: 14px;
-  font-family: inherit;
-  background: transparent;
-  color: var(--portal-text);
-}
-
-.triage-form-row input:focus,
-.triage-form-row textarea:focus {
-  outline: none;
-  border-bottom-color: var(--portal-primary);
-}
-
-.triage-form-row textarea {
-  min-height: 80px;
-  resize: vertical;
-}
-
-.triage-form-row-split {
+/* Route Section - Horizontal label/value layout */
+.triage-route-row {
   display: flex;
-  gap: 0;
+  border-bottom: 1px solid var(--portal-border);
 }
 
-.triage-form-field {
+.triage-route-cell {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 16px;
+}
+
+.triage-route-cell label {
+  font-size: 14px;
+  color: var(--portal-text);
+  white-space: nowrap;
+}
+
+.triage-route-cell-input {
   flex: 1;
-  padding: 0;
-}
-
-.triage-form-field:first-child {
-  padding-right: 16px;
   border-right: 1px solid var(--portal-border);
 }
 
-.triage-form-field:last-child {
-  padding-left: 16px;
-}
-
-.triage-form-field label {
-  display: block;
-  font-size: 14px;
-  color: var(--portal-text);
-  margin-bottom: 4px;
-}
-
-.triage-form-field input {
-  width: 100%;
-  padding: 8px 0;
+.triage-route-cell-input input {
+  flex: 1;
+  padding: 4px 0;
   border: none;
-  border-bottom: 1px solid var(--portal-border);
   font-size: 14px;
   font-family: inherit;
   background: transparent;
   color: var(--portal-text);
 }
 
-.triage-form-field input:focus {
+.triage-route-cell-input input:focus {
   outline: none;
-  border-bottom-color: var(--portal-primary);
 }
 
-.triage-form-value {
-  padding: 8px 0;
+.triage-route-cell-value {
+  min-width: 200px;
+}
+
+.triage-route-cell-value span {
   font-size: 14px;
   color: var(--portal-text);
+}
+
+/* Subject & Message Section */
+.triage-message-row {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--portal-border);
+}
+
+.triage-message-row label {
+  font-size: 14px;
+  color: var(--portal-text);
+}
+
+.triage-message-input {
+  padding: 4px 16px 12px;
+}
+
+.triage-message-input input {
+  width: 100%;
+  padding: 4px 0;
+  border: none;
+  font-size: 14px;
+  font-family: inherit;
+  background: transparent;
+  color: var(--portal-text);
+}
+
+.triage-message-input input:focus {
+  outline: none;
+}
+
+.triage-message-textarea {
+  padding: 4px 16px 12px;
+}
+
+.triage-message-textarea textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px;
+  border: 1px solid var(--portal-border);
+  font-size: 14px;
+  font-family: inherit;
+  background: transparent;
+  color: var(--portal-text);
+  resize: vertical;
+}
+
+.triage-message-textarea textarea:focus {
+  outline: none;
+  border-color: var(--portal-primary);
+}
+
+/* User Dropdown */
+.triage-route-cell-clickable {
+  position: relative;
+  cursor: pointer;
+}
+
+.triage-user-select {
+  flex: 1;
+  padding: 4px 0;
+  font-size: 14px;
+  color: var(--portal-text);
+  min-height: 20px;
+}
+
+.triage-placeholder {
+  color: var(--portal-text-light);
+}
+
+.triage-user-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 16px;
+  background: var(--portal-white);
+  border: 1px solid var(--portal-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.triage-user-option {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--portal-text);
+  cursor: pointer;
+  border-bottom: 1px solid var(--portal-border);
+}
+
+.triage-user-option:last-child {
+  border-bottom: none;
+}
+
+.triage-user-option:hover {
+  background-color: #f5f5f5;
 }
 
 /* Triage Loading Overlay */

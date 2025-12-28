@@ -15,6 +15,15 @@ interface TriageNewProps {
   onLogout: () => void;
 }
 
+// Mock users for dropdown
+const mockUsers = [
+  { id: 'WFSZNJ7W', name: 'Clark Street Health' },
+  { id: 'JSMITH01', name: 'John Smith' },
+  { id: 'MJONES02', name: 'Mary Jones' },
+  { id: 'RBROWN03', name: 'Robert Brown' },
+  { id: 'SWILSON04', name: 'Sarah Wilson' },
+];
+
 export default function TriageNew({
   patient,
   userName,
@@ -24,12 +33,18 @@ export default function TriageNew({
   onLogout,
 }: TriageNewProps) {
   const [user, setUser] = useState('');
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
   const [status, setStatus] = useState('Open');
   const [reason, setReason] = useState('');
   const [rating, setRating] = useState('1 Normal');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleUserSelect = (selectedUser: typeof mockUsers[0]) => {
+    setUser(selectedUser.name);
+    setShowUserDropdown(false);
+  };
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
@@ -119,24 +134,38 @@ export default function TriageNew({
         {/* Route Section */}
         <div className="triage-section-header triage-section-route">Route</div>
         <div className="triage-form-section">
-          <div className="triage-form-row triage-form-row-split">
-            <div className="triage-form-field">
+          <div className="triage-route-row">
+            <div className="triage-route-cell triage-route-cell-input triage-route-cell-clickable">
               <label>User</label>
-              <input
-                type="text"
-                value={user}
-                onChange={(e) => setUser(e.target.value)}
+              <div
+                className="triage-user-select"
+                onClick={() => setShowUserDropdown(!showUserDropdown)}
                 id="triageUser"
-                name="triageUser"
-              />
+              >
+                {user || <span className="triage-placeholder">&nbsp;</span>}
+              </div>
+              {showUserDropdown && (
+                <div className="triage-user-dropdown">
+                  {mockUsers.map((u) => (
+                    <div
+                      key={u.id}
+                      className="triage-user-option"
+                      onClick={() => handleUserSelect(u)}
+                      data-user-id={u.id}
+                    >
+                      {u.name}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-            <div className="triage-form-field">
+            <div className="triage-route-cell triage-route-cell-value">
               <label>Status</label>
-              <div className="triage-form-value">{status}</div>
+              <span>{status}</span>
             </div>
           </div>
-          <div className="triage-form-row triage-form-row-split">
-            <div className="triage-form-field">
+          <div className="triage-route-row">
+            <div className="triage-route-cell triage-route-cell-input">
               <label>Reason</label>
               <input
                 type="text"
@@ -146,9 +175,9 @@ export default function TriageNew({
                 name="triageReason"
               />
             </div>
-            <div className="triage-form-field">
+            <div className="triage-route-cell triage-route-cell-value">
               <label>Rating</label>
-              <div className="triage-form-value">{rating}</div>
+              <span>{rating}</span>
             </div>
           </div>
         </div>
@@ -156,8 +185,10 @@ export default function TriageNew({
         {/* Subject & Message Section */}
         <div className="triage-section-header triage-section-route">Subject &amp; Message</div>
         <div className="triage-form-section">
-          <div className="triage-form-row">
+          <div className="triage-message-row">
             <label>Subject</label>
+          </div>
+          <div className="triage-message-row triage-message-input">
             <input
               type="text"
               value={subject}
@@ -166,8 +197,10 @@ export default function TriageNew({
               name="triageSubject"
             />
           </div>
-          <div className="triage-form-row">
+          <div className="triage-message-row">
             <label>Message</label>
+          </div>
+          <div className="triage-message-row triage-message-textarea">
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
