@@ -13,7 +13,7 @@ type SecurityQuestion = {
 };
 
 const securityQuestions: SecurityQuestion[] = [
-  { question: "What is your mother's first name?", answer: 'ruh' },
+  { question: "What is your mother's first name?", answer: 'martha' },
   { question: "What is your father's middle name?", answer: 'francis' },
   { question: "What town did you grow up in?", answer: 'derby' },
 ];
