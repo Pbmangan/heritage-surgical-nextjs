@@ -29,6 +29,8 @@ const mockUsers = [
 
 // Reason code suggestions for autocomplete
 const reasonSuggestions = [
+  { code: 'Appt', description: 'Appointment' },
+  { code: 'Other', description: '' },
   { code: 'Urgent', description: 'Urgent Triage' },
   { code: 'Urgentcare', description: 'Urgent Care Tracking' },
   { code: 'Rx Live', description: 'pharmacy' },
