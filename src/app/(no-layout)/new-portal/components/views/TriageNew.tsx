@@ -18,7 +18,7 @@ interface TriageNewProps {
 // Mock users for dropdown
 const mockUsers = [
   { id: 'NURSETRIAGE', name: 'Nurse Triage' },
-  { id: 'SVCPATIENT', name: 'Services , Patient' },
+  { id: 'SVCPATIENT', name: 'Service, Patient' },
   { id: 'NURSINGTRIAGE', name: 'Nursing, Triage' },
   { id: 'WFSZNJ7W', name: 'Clark Street Health' },
   { id: 'JSMITH01', name: 'John Smith' },
