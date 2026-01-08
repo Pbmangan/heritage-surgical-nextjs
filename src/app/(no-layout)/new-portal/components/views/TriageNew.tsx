@@ -17,11 +17,23 @@ interface TriageNewProps {
 
 // Mock users for dropdown
 const mockUsers = [
+  { id: 'NURSETRIAGE', name: 'Nurse Triage' },
+  { id: 'SVCPATIENT', name: 'Services , Patient' },
+  { id: 'NURSINGTRIAGE', name: 'Nursing, Triage' },
   { id: 'WFSZNJ7W', name: 'Clark Street Health' },
   { id: 'JSMITH01', name: 'John Smith' },
   { id: 'MJONES02', name: 'Mary Jones' },
   { id: 'RBROWN03', name: 'Robert Brown' },
   { id: 'SWILSON04', name: 'Sarah Wilson' },
+];
+
+// Reason code suggestions for autocomplete
+const reasonSuggestions = [
+  { code: 'Urgent', description: 'Urgent Triage' },
+  { code: 'Urgentcare', description: 'Urgent Care Tracking' },
+  { code: 'Rx Live', description: 'pharmacy' },
+  { code: 'Rx Refill', description: 'Rx Refill' },
+  { code: '<none>', description: '' },
 ];
 
 export default function TriageNew({
@@ -34,16 +46,38 @@ export default function TriageNew({
 }: TriageNewProps) {
   const [user, setUser] = useState('');
   const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [userFilter, setUserFilter] = useState('');
   const [status, setStatus] = useState('Open');
   const [reason, setReason] = useState('');
+  const [showReasonDropdown, setShowReasonDropdown] = useState(false);
   const [rating, setRating] = useState('1 Normal');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Filter users based on input
+  const filteredUsers = mockUsers.filter((u) =>
+    u.name.toLowerCase().includes(userFilter.toLowerCase())
+  );
+
+  // Filter reason suggestions based on input
+  const filteredReasons = reasonSuggestions.filter((r) =>
+    r.code.toLowerCase().includes(reason.toLowerCase()) ||
+    r.description.toLowerCase().includes(reason.toLowerCase())
+  );
+
   const handleUserSelect = (selectedUser: typeof mockUsers[0]) => {
     setUser(selectedUser.name);
+    setUserFilter(selectedUser.name);
     setShowUserDropdown(false);
+  };
+
+  const handleReasonSelect = (selectedReason: typeof reasonSuggestions[0]) => {
+    const displayValue = selectedReason.description
+      ? `${selectedReason.code} - ${selectedReason.description}`
+      : selectedReason.code;
+    setReason(displayValue);
+    setShowReasonDropdown(false);
   };
 
   const handleSubmit = async () => {
@@ -145,13 +179,18 @@ export default function TriageNew({
                   name="triage_user"
                   className="ccs_lookup_field_input"
                   autoComplete="off"
-                  value={user}
-                  onClick={() => setShowUserDropdown(!showUserDropdown)}
-                  readOnly
+                  value={userFilter}
+                  onChange={(e) => {
+                    setUserFilter(e.target.value);
+                    setUser(e.target.value);
+                    setShowUserDropdown(true);
+                  }}
+                  onFocus={() => setShowUserDropdown(true)}
+                  onBlur={() => setTimeout(() => setShowUserDropdown(false), 200)}
                 />
-                {showUserDropdown && (
+                {showUserDropdown && filteredUsers.length > 0 && (
                   <div id="triage_user_hints" className="ajax_hints triage-user-dropdown-visible">
-                    {mockUsers.map((u) => (
+                    {filteredUsers.map((u) => (
                       <div
                         key={u.id}
                         className="triage-user-option"
@@ -174,8 +213,26 @@ export default function TriageNew({
                   className="ccs_lookup_field_input"
                   autoComplete="off"
                   value={reason}
-                  onChange={(e) => setReason(e.target.value)}
+                  onChange={(e) => {
+                    setReason(e.target.value);
+                    setShowReasonDropdown(true);
+                  }}
+                  onFocus={() => setShowReasonDropdown(true)}
+                  onBlur={() => setTimeout(() => setShowReasonDropdown(false), 200)}
                 />
+                {showReasonDropdown && filteredReasons.length > 0 && (
+                  <div id="triage_reason_hints" className="ajax_hints triage-user-dropdown-visible">
+                    {filteredReasons.map((r, index) => (
+                      <div
+                        key={index}
+                        className="triage-user-option"
+                        onClick={() => handleReasonSelect(r)}
+                      >
+                        {r.description ? `${r.code} - ${r.description}` : r.code}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
