@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { SESSION_CONFIG, storeSession, type PortalSession } from '@/lib/session';
 
 interface LoginSecurityProps {
   userId: string;
+  password: string;
   onNext: () => void;
 }
 
@@ -18,10 +20,11 @@ const securityQuestions: SecurityQuestion[] = [
   { question: "What town did you grow up in?", answer: 'derby' },
 ];
 
-export default function LoginSecurity({ userId, onNext }: LoginSecurityProps) {
+export default function LoginSecurity({ userId, password, onNext }: LoginSecurityProps) {
   const [answer, setAnswer] = useState('');
   const [rememberComputer, setRememberComputer] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState<SecurityQuestion>(securityQuestions[0]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Randomly select a question on mount
   useEffect(() => {
@@ -29,14 +32,39 @@ export default function LoginSecurity({ userId, onNext }: LoginSecurityProps) {
     setCurrentQuestion(securityQuestions[randomIndex]);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Validate security answer (case-insensitive)
     if (answer.toLowerCase() !== currentQuestion.answer.toLowerCase()) {
       alert('Incorrect answer');
       return;
     }
-    onNext();
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, password }),
+      });
+
+      if (!response.ok) {
+        alert('Failed to create session');
+        setIsSubmitting(false);
+        return;
+      }
+
+      const data = await response.json();
+      if (data.success && data.session) {
+        storeSession(data.session);
+        onNext();
+      } else {
+        alert('Session creation failed');
+        setIsSubmitting(false);
+      }
+    } catch {
+      alert('Network error');
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -55,8 +83,8 @@ export default function LoginSecurity({ userId, onNext }: LoginSecurityProps) {
             id="securityAnswer"
             name="securityAnswer"
           />
-          <button type="submit" className="portal-login-btn">
-            Sign In
+          <button type="submit" className="portal-login-btn" disabled={isSubmitting}>
+            {isSubmitting ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
 

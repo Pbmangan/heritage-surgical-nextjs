@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 interface LoginPasswordProps {
   userId: string;
-  onNext: () => void;
+  onNext: (password: string) => void;
 }
 
 export default function LoginPassword({ userId, onNext }: LoginPasswordProps) {
@@ -17,7 +17,7 @@ export default function LoginPassword({ userId, onNext }: LoginPasswordProps) {
       alert('Invalid password');
       return;
     }
-    onNext();
+    onNext(password);
   };
 
   return (

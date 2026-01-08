@@ -3,9 +3,18 @@
 interface PortalFooterProps {
   userName: string;
   onLogout: () => void;
+  sessionId?: string;
+  practiceId?: string;
+  practiceName?: string;
 }
 
-export default function PortalFooter({ userName, onLogout }: PortalFooterProps) {
+export default function PortalFooter({
+  userName,
+  onLogout,
+  sessionId = 'no-session',
+  practiceId = 'HM001',
+  practiceName = 'Heritage Medical',
+}: PortalFooterProps) {
   const lastLogin = new Date().toLocaleString('en-US', {
     month: '2-digit',
     day: '2-digit',
@@ -55,9 +64,9 @@ export default function PortalFooter({ userName, onLogout }: PortalFooterProps) 
 
       {/* Hidden system vars for Playwright selectors */}
       <div id="system-vars">
-        <input type="hidden" id="sMmSessionId" name="sMmSessionId" value="mock-session-123" />
-        <input type="hidden" id="sPracticeId" name="sPracticeId" value="HM001" />
-        <input type="hidden" id="sPracticeName" name="sPracticeName" value="Heritage Medical" />
+        <input type="hidden" id="sMmSessionId" name="sMmSessionId" value={sessionId} />
+        <input type="hidden" id="sPracticeId" name="sPracticeId" value={practiceId} />
+        <input type="hidden" id="sPracticeName" name="sPracticeName" value={practiceName} />
         <input type="hidden" id="sMobileId" name="sMobileId" value="HM001mockID" />
         <input type="hidden" id="sMobileUserId" name="sMobileUserId" value="12345" />
         <input type="hidden" id="sMedentSessionId" name="sMedentSessionId" value="mockMedent" />

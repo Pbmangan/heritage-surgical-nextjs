@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import './portal.css';
 import { ViewState, Patient, Medication } from './types';
+import { useSession } from './hooks/useSession';
+import type { PortalSession } from '@/lib/session';
 
 // Import all view components
 import LoginUserId from './components/views/LoginUserId';
@@ -21,6 +23,11 @@ export default function NewPortal() {
   // View state management
   const [view, setView] = useState<ViewState>({ screen: 'login-userid' });
   const [currentUser, setCurrentUser] = useState('');
+  const [isInitializing, setIsInitializing] = useState(true);
+  const [currentPassword, setCurrentPassword] = useState('');
+
+  // Session management
+  const { session, isLoading, validateSession, logout } = useSession();
 
   // Listen for browser back/forward button
   useEffect(() => {
@@ -41,6 +48,21 @@ export default function NewPortal() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
+  // Auto-login check on mount - restore session if valid
+  useEffect(() => {
+    async function checkSession() {
+      if (!isLoading && session) {
+        const isValid = await validateSession();
+        if (isValid) {
+          setCurrentUser(session.userId);
+          setView({ screen: 'dashboard' });
+        }
+      }
+      setIsInitializing(false);
+    }
+    checkSession();
+  }, [isLoading, session, validateSession]);
+
   // Navigation functions
   const navigate = (newView: ViewState, user?: string) => {
     setView(newView);
@@ -57,9 +79,11 @@ export default function NewPortal() {
     window.history.pushState({ view: homeView, currentUser }, '');
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await logout();
     const loginView: ViewState = { screen: 'login-userid' };
     setCurrentUser('');
+    setCurrentPassword('');
     setView(loginView);
     // Replace current state to prevent going back to authenticated pages
     window.history.replaceState({ view: loginView, currentUser: '' }, '');
@@ -82,7 +106,10 @@ export default function NewPortal() {
         return (
           <LoginPassword
             userId={view.userId}
-            onNext={() => navigate({ screen: 'login-security', userId: view.userId })}
+            onNext={(password) => {
+              setCurrentPassword(password);
+              navigate({ screen: 'login-security', userId: view.userId });
+            }}
           />
         );
 
@@ -90,6 +117,7 @@ export default function NewPortal() {
         return (
           <LoginSecurity
             userId={view.userId}
+            password={currentPassword}
             onNext={() => navigate({ screen: 'dashboard' })}
           />
         );
@@ -198,6 +226,21 @@ export default function NewPortal() {
     }
   };
 
+  // Show loading state during session initialization
+  if (isInitializing || isLoading) {
+    return (
+      <div id="simulate-mobile-page" style={{ minHeight: 'auto' }}>
+        <section id="page-container">
+          <div className="portal-login">
+            <div className="portal-login-box">
+              <p style={{ textAlign: 'center', padding: '20px' }}>Checking session...</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div id="simulate-mobile-page" style={{ minHeight: 'auto' }}>
       <section id="page-container">
@@ -210,6 +253,7 @@ export default function NewPortal() {
         <input type="hidden" id="bIsSystemInitialized" value="1" />
         <input type="hidden" id="bIsPageLoaded" value="1" />
         <input type="hidden" id="currentScreen" value={view.screen} />
+        <input type="hidden" id="sessionToken" value={session?.token || ''} />
       </div>
     </div>
   );
